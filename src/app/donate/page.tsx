@@ -3,11 +3,27 @@
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import Script from "next/script";
 import { SITE_CONFIG } from "@/config/site";
 import { UPIQRModal } from "@/components/upi-qr-modal";
-import { QrCode, Lock, Check, AlertCircle } from "lucide-react";
+import { QrCode, AlertCircle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+function loadRazorpayScript(): Promise<boolean> {
+  return new Promise((resolve) => {
+    if (typeof window !== "undefined" && (window as any).Razorpay) {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+}
 
 function DonateForm() {
   const searchParams = useSearchParams();
@@ -35,6 +51,8 @@ function DonateForm() {
     if (paramCampaign === "annual-drive-2026") {
       setCause("Annual Drive 2026");
     }
+    // Pre-load Razorpay checkout SDK
+    loadRazorpayScript();
   }, [searchParams]);
 
   const finalAmount = isCustom ? parseFloat(customAmount) || 0 : amount;
@@ -66,6 +84,12 @@ function DonateForm() {
     setLoading(true);
 
     try {
+      // Ensure Razorpay SDK is loaded
+      const isRzpLoaded = await loadRazorpayScript();
+      if (!isRzpLoaded || typeof (window as any).Razorpay === "undefined") {
+        throw new Error("Razorpay Checkout SDK failed to load. Please check your internet connection or use YES BANK UPI QR below.");
+      }
+
       const res = await fetch("/api/donations/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -153,29 +177,36 @@ function DonateForm() {
   };
 
   return (
-    <div className="py-20 bg-[#005B45] text-white min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-14 sm:py-20 bg-[#005B45] text-white min-h-screen w-full max-w-full">
+      
+      {/* Dynamic script loading fallback */}
+      <Script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        strategy="afterInteractive"
+      />
+
+      <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center space-y-4 mb-14">
-          <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
+        <div className="text-center space-y-4 mb-10 sm:mb-14">
+          <span className="text-[11px] sm:text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
             Direct Social Impact
           </span>
 
-          <h1 className="font-serif text-3xl sm:text-5xl text-white max-w-2xl mx-auto leading-tight">
+          <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-white max-w-2xl mx-auto leading-tight">
             "Your contribution becomes someone's opportunity."
           </h1>
 
-          <p className="text-sm font-sans text-white/80 max-w-lg mx-auto">
+          <p className="text-xs sm:text-sm font-sans text-white/80 max-w-lg mx-auto">
             100% of direct donations support purchasing school supplies, serving warm meals, and aiding hospital patients.
           </p>
         </div>
 
         {/* Form Container */}
-        <div className="bg-[#003D31] p-8 sm:p-12 border border-white/15 space-y-8">
+        <div className="bg-[#003D31] p-6 sm:p-12 border border-white/15 space-y-8">
           
           {errorMessage && (
-            <div className="p-4 bg-red-950/80 border border-red-500/50 text-red-200 text-xs font-sans flex items-center gap-2">
+            <div className="p-4 bg-red-950/90 border border-red-500/50 text-red-200 text-xs font-sans flex items-center gap-2">
               <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
               <span>{errorMessage}</span>
             </div>
@@ -195,7 +226,7 @@ function DonateForm() {
                     key={val}
                     type="button"
                     onClick={() => handleSelectQuickAmount(val)}
-                    className={`py-4 text-sm font-sans font-bold transition-all border ${
+                    className={`py-4 text-sm font-sans font-bold transition-all border min-h-[48px] ${
                       !isCustom && amount === val
                         ? "bg-[#63BE21] text-[#003D31] border-[#63BE21]"
                         : "bg-transparent text-white border-white/20 hover:border-white"
@@ -218,7 +249,7 @@ function DonateForm() {
                     placeholder="Or enter custom amount"
                     value={customAmount}
                     onChange={(e) => handleCustomChange(e.target.value)}
-                    className={`w-full pl-9 pr-4 py-3.5 text-sm font-sans bg-emerald-950/60 border outline-none text-white transition-all ${
+                    className={`w-full pl-9 pr-4 py-3.5 text-sm font-sans bg-emerald-950/60 border outline-none text-white transition-all min-h-[48px] ${
                       isCustom ? "border-[#63BE21]" : "border-white/20 focus:border-white"
                     }`}
                   />
@@ -234,7 +265,7 @@ function DonateForm() {
               <select
                 value={cause}
                 onChange={(e) => setCause(e.target.value)}
-                className="w-full px-4 py-3 text-sm font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white"
+                className="w-full px-4 py-3.5 text-sm font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white min-h-[48px]"
               >
                 <option value="Education Support">Education Support & School Supplies</option>
                 <option value="Homeless Food Drive">Homeless & Vulnerable Meal Drives</option>
@@ -262,7 +293,7 @@ function DonateForm() {
                     value={donorName}
                     onChange={(e) => setDonorName(e.target.value)}
                     placeholder={anonymous ? "Anonymous" : "Full Name"}
-                    className="w-full px-4 py-3 text-xs font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white disabled:opacity-50"
+                    className="w-full px-4 py-3.5 text-xs font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white disabled:opacity-50 min-h-[48px]"
                   />
                 </div>
 
@@ -276,7 +307,7 @@ function DonateForm() {
                     value={donorEmail}
                     onChange={(e) => setDonorEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="w-full px-4 py-3 text-xs font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white"
+                    className="w-full px-4 py-3.5 text-xs font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white min-h-[48px]"
                   />
                 </div>
               </div>
@@ -291,12 +322,12 @@ function DonateForm() {
                     value={donorPhone}
                     onChange={(e) => setDonorPhone(e.target.value)}
                     placeholder="+91 9876543210"
-                    className="w-full px-4 py-3 text-xs font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white"
+                    className="w-full px-4 py-3.5 text-xs font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white min-h-[48px]"
                   />
                 </div>
 
-                <div className="flex items-center pt-4">
-                  <label className="flex items-center gap-2 cursor-pointer text-xs font-sans text-white/80">
+                <div className="flex items-center sm:pt-4">
+                  <label className="flex items-center gap-2 cursor-pointer text-xs font-sans text-white/80 min-h-[44px]">
                     <input
                       type="checkbox"
                       checked={anonymous}
@@ -317,7 +348,7 @@ function DonateForm() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Words of support..."
-                  className="w-full px-4 py-3 text-xs font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white"
+                  className="w-full px-4 py-3.5 text-xs font-sans bg-emerald-950/80 border border-white/20 text-white outline-none focus:border-white min-h-[48px]"
                 />
               </div>
             </div>
@@ -341,7 +372,7 @@ function DonateForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 text-xs font-sans font-bold tracking-widest text-[#003D31] bg-[#63BE21] hover:bg-lime-400 disabled:opacity-50 uppercase transition-all rounded-xs shadow-xs"
+              className="w-full min-h-[50px] py-4 text-xs font-sans font-bold tracking-widest text-[#003D31] bg-[#63BE21] hover:bg-lime-400 disabled:opacity-50 uppercase transition-all rounded-xs shadow-md"
             >
               {loading
                 ? "INITIALIZING RAZORPAY..."
@@ -358,7 +389,7 @@ function DonateForm() {
             <button
               type="button"
               onClick={() => setUpiModalOpen(true)}
-              className="px-6 py-3 text-xs font-sans font-bold uppercase tracking-wider text-white border border-white/30 hover:border-white transition-colors inline-flex items-center gap-2"
+              className="w-full sm:w-auto px-6 py-3.5 min-h-[48px] text-xs font-sans font-bold uppercase tracking-wider text-white border border-white/30 hover:border-white transition-colors inline-flex items-center justify-center gap-2"
             >
               <QrCode className="w-4 h-4 text-[#63BE21]" />
               <span>SHOW YES BANK UPI QR & SUBMIT REF</span>

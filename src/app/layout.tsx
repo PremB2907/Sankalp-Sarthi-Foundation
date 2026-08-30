@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -63,6 +64,12 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="bg-[#F7F6F0] text-[#17352D] antialiased min-h-screen flex flex-col font-sans" suppressHydrationWarning>
         
+        {/* Razorpay Global Checkout Script */}
+        <Script
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          strategy="afterInteractive"
+        />
+
         {/* Institutional Header */}
         <Navbar />
 
