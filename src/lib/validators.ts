@@ -68,3 +68,23 @@ export const ContactSchema = z.object({
   subject: z.string().min(3, "Subject is required"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
+
+export function formatZodError(error: any): string {
+  if (!error) return "An unexpected error occurred.";
+  
+  if (error.errors && Array.isArray(error.errors) && error.errors.length > 0) {
+    return error.errors.map((e: any) => e.message).join(". ");
+  }
+
+  if (typeof error.message === "string") {
+    try {
+      const parsed = JSON.parse(error.message);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map((e: any) => e.message || "Invalid input").join(". ");
+      }
+    } catch (e) {}
+    return error.message;
+  }
+
+  return "Validation error. Please check your inputs.";
+}

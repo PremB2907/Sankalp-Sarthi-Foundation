@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { uploadFileToDrive } from "@/lib/google-drive";
 import { appendToSheet } from "@/lib/google-sheets";
 import { sendDonationReceiptEmail } from "@/lib/email-service";
-import { ManualUPISchema } from "@/lib/validators";
+import { ManualUPISchema, formatZodError } from "@/lib/validators";
 
 export async function POST(req: Request) {
   try {
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       name,
       email,
       phone,
-      amount: parseFloat(amountStr),
+      amount: parseFloat(amountStr) || 0,
       utr,
       cause,
       message,
@@ -30,13 +30,17 @@ export async function POST(req: Request) {
     let screenshotUrl = "";
 
     if (proofFile && proofFile.size > 0) {
-      const buffer = Buffer.from(await proofFile.arrayBuffer());
-      const driveRes = await uploadFileToDrive(
-        buffer,
-        proofFile.name || `upi_proof_${utr}.png`,
-        proofFile.type || "image/png"
-      );
-      screenshotUrl = driveRes.webViewLink || driveRes.fileId;
+      try {
+        const buffer = Buffer.from(await proofFile.arrayBuffer());
+        const driveRes = await uploadFileToDrive(
+          buffer,
+          proofFile.name || `upi_proof_${utr}.png`,
+          proofFile.type || "image/png"
+        );
+        screenshotUrl = driveRes.webViewLink || driveRes.fileId;
+      } catch (e) {
+        console.error("Drive upload failed:", e);
+      }
     }
 
     const recordId = `UPI_${Date.now()}`;
@@ -53,23 +57,29 @@ export async function POST(req: Request) {
       "PENDING_VERIFICATION",
     ];
 
-    // 1. Append to MANUAL_UPI Google Sheet
-    appendToSheet("MANUAL_UPI", rowValues).catch((err) =>
-      console.error("Async Google Sheets UPI append failed:", err)
-    );
+    // 1. Await Google Sheets append
+    try {
+      await appendToSheet("MANUAL_UPI", rowValues);
+    } catch (err) {
+      console.error("Google Sheets UPI append failed:", err);
+    }
 
-    // 2. Send PDF Donation Receipt email via SMTP
-    sendDonationReceiptEmail({
-      receiptId: recordId,
-      donorName: validated.name,
-      donorEmail: validated.email,
-      donorPhone: validated.phone,
-      amount: validated.amount,
-      cause: validated.cause,
-      paymentMethod: "Manual UPI",
-      transactionRef: validated.utr,
-      createdAt,
-    }).catch((err) => console.error("Async UPI receipt email failed:", err));
+    // 2. Await PDF Donation Receipt email via SMTP
+    try {
+      await sendDonationReceiptEmail({
+        receiptId: recordId,
+        donorName: validated.name,
+        donorEmail: validated.email,
+        donorPhone: validated.phone,
+        amount: validated.amount,
+        cause: validated.cause,
+        paymentMethod: "Manual UPI",
+        transactionRef: validated.utr,
+        createdAt,
+      });
+    } catch (err) {
+      console.error("UPI receipt email failed:", err);
+    }
 
     return NextResponse.json({
       success: true,
@@ -80,7 +90,7 @@ export async function POST(req: Request) {
   } catch (error: any) {
     console.error("Error submitting manual UPI proof:", error);
     return NextResponse.json(
-      { success: false, error: error.message || "Failed to process manual UPI submission" },
+      { success: false, error: formatZodError(error) },
       { status: 400 }
     );
   }

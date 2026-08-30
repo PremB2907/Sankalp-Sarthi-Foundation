@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { appendToSheet } from "@/lib/google-sheets";
 import { sendContactEmails } from "@/lib/email-service";
-import { ContactSchema } from "@/lib/validators";
+import { ContactSchema, formatZodError } from "@/lib/validators";
 
 export async function POST(req: Request) {
   try {
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
   } catch (error: any) {
     console.error("Error processing contact form:", error);
     return NextResponse.json(
-      { success: false, error: error.message || "Failed to send message" },
+      { success: false, error: formatZodError(error) },
       { status: 400 }
     );
   }

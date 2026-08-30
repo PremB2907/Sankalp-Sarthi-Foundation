@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getRazorpayInstance } from "@/lib/razorpay";
-import { CreateOrderSchema } from "@/lib/validators";
+import { CreateOrderSchema, formatZodError } from "@/lib/validators";
 
 export async function POST(req: Request) {
   try {
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: false,
-        error: error.message || "Failed to create donation order",
+        error: formatZodError(error),
       },
       { status: 400 }
     );

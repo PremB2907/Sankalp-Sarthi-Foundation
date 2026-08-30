@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { appendToSheet } from "@/lib/google-sheets";
-import { VolunteerSchema } from "@/lib/validators";
+import { VolunteerSchema, formatZodError } from "@/lib/validators";
 
 export async function POST(req: Request) {
   try {
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
   } catch (error: any) {
     console.error("Error submitting volunteer form:", error);
     return NextResponse.json(
-      { success: false, error: error.message || "Failed to submit volunteer registration" },
+      { success: false, error: formatZodError(error) },
       { status: 400 }
     );
   }
