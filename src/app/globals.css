@@ -53,7 +53,7 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
-  /* Prevent iOS Safari input zoom by enforcing 16px minimum font size */
+  /* Explicit Form Input Text Contrast Rules */
   input[type="text"],
   input[type="email"],
   input[type="tel"],
@@ -62,6 +62,7 @@
   select,
   textarea {
     font-size: 16px !important;
+    color: #17352d;
   }
 }
 
