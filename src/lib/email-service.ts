@@ -31,10 +31,11 @@ export async function sendContactEmails(data: {
     const transporter = getTransporter();
     const fromAddress = process.env.SMTP_FROM || "Sankalp Sarthi Foundation <sankalpsarthifoundation@gmail.com>";
 
-    // 1. Notification to Foundation
+    // 1. Notification to Foundation (with BCC to sankalpsarthi7@gmail.com)
     await transporter.sendMail({
       from: fromAddress,
       to: "sankalpsarthifoundation@gmail.com",
+      bcc: "sankalpsarthi7@gmail.com",
       subject: `New Web Inquiry: ${data.subject}`,
       html: `
         <h2>New Contact Inquiry</h2>
@@ -50,6 +51,7 @@ export async function sendContactEmails(data: {
     await transporter.sendMail({
       from: fromAddress,
       to: data.email,
+      bcc: "sankalpsarthi7@gmail.com",
       subject: `Thank you for contacting Sankalp Sarthi Foundation`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
@@ -62,7 +64,7 @@ export async function sendContactEmails(data: {
             <p>Thank you for reaching out to Sankalp Sarthi Foundation regarding <em>"${data.subject}"</em>.</p>
             <p>We have received your message and our coordinator team will respond to your inquiry shortly.</p>
             <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
-            <p style="font-size: 12px; color: #6b7280;">Sankalp Sarthi Foundation | Govt. Approved | Regd. No. Mu/0001792/2025<br />Mumbai, Maharashtra, India</p>
+            <p style="font-size: 12px; color: #6b7280;">Sankalp Sarthi Foundation | Govt. Approved | Regd. No. F-0087683<br />Andheri East, Mumbai, Maharashtra, India</p>
           </div>
         </div>
       `,
@@ -86,9 +88,11 @@ export async function sendDonationReceiptEmail(data: ReceiptData) {
     // Generate PDF receipt buffer
     const pdfBuffer = await generateDonationPDFBuffer(data);
 
+    // Send to donor with BCC to sankalpsarthi7@gmail.com & sankalpsarthifoundation@gmail.com
     await transporter.sendMail({
       from: fromAddress,
       to: data.donorEmail,
+      bcc: ["sankalpsarthifoundation@gmail.com", "sankalpsarthi7@gmail.com"],
       subject: `Donation Receipt — Sankalp Sarthi Foundation (Receipt #${data.receiptId})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
@@ -107,26 +111,11 @@ export async function sendDonationReceiptEmail(data: ReceiptData) {
               <p style="margin: 4px 0 0 0; font-size: 13px; color: #065f46;"><strong>Transaction Ref:</strong> ${data.transactionRef}</p>
             </div>
 
-            <p>Your support directly enables us to provide school supplies, warm meals, and hospital care kits to vulnerable communities across Mumbai.</p>
+            <p>Contributions to Sankalp Sarthi Foundation are eligible for exemption under section 80G of the Income Tax Act, 1961.</p>
             <p>With warm regards,<br /><strong>Sankalp Sarthi Foundation Team</strong></p>
           </div>
         </div>
       `,
-      attachments: [
-        {
-          filename: `Donation_Receipt_${data.receiptId}.pdf`,
-          content: pdfBuffer,
-          contentType: "application/pdf",
-        },
-      ],
-    });
-
-    // Also send a copy to Foundation email
-    await transporter.sendMail({
-      from: fromAddress,
-      to: "sankalpsarthifoundation@gmail.com",
-      subject: `New Donation Received: ₹${data.amount} from ${data.donorName}`,
-      html: `<p>New donation recorded. Receipt #${data.receiptId} sent to ${data.donorEmail}.</p>`,
       attachments: [
         {
           filename: `Donation_Receipt_${data.receiptId}.pdf`,

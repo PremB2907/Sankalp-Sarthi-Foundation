@@ -19,7 +19,7 @@ export const SITE_CONFIG = {
   
   // Contact Info
   email: "sankalpsarthifoundation@gmail.com",
-  emailSecondary: "sankalpsarthi7@gmail.com",
+  emailBcc: "sankalpsarthi7@gmail.com",
   phones: ["7977854590", "7738351352", "8080880012", "9004029544"],
   primaryPhone: "+91 7977854590",
   

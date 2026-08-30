@@ -80,7 +80,7 @@ export function generateDonationPDFBuffer(data: ReceiptData): Promise<Buffer> {
         .fontSize(8)
         .font("Helvetica")
         .text("7977854590  |  7738351352  |  8080880012  |  9004029544", 330, y, { align: "right", width: 220 })
-        .text("sankalpsarthi7@gmail.com", 330, y + 14, { align: "right", width: 220 })
+        .text("sankalpsarthifoundation@gmail.com", 330, y + 14, { align: "right", width: 220 })
         .fontSize(7.5)
         .text("A-002, Ground Floor, Navratan CHS Ltd., Bindra Complex, Mahakali Caves Road, Andheri East, Mumbai – 400093, Maharashtra, India", 310, y + 26, { align: "right", width: 240 });
 
