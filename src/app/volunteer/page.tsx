@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { SITE_CONFIG } from "@/config/site";
-import { MessageCircle, CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
+import { MessageCircle, CheckCircle2, AlertCircle, Award, FileText } from "lucide-react";
 
 export default function VolunteerPage() {
   const [formData, setFormData] = useState({
@@ -66,33 +66,84 @@ export default function VolunteerPage() {
     <div className="py-20 bg-[#F7F6F0] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Banner */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
-          <div className="lg:col-span-7 space-y-4">
-            <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
-              Volunteer Network & Internships
+        {/* Header Banner */}
+        <div className="max-w-3xl mb-16 space-y-4">
+          <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+            Volunteer Network & Student Internships
+          </span>
+
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#17352D] leading-tight">
+            Become a volunteer. <br />
+            <span className="font-accent italic text-[#005B45] font-normal">
+              Drive real service.
             </span>
+          </h1>
 
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#17352D] leading-tight">
-              Become a volunteer. <br />
-              <span className="font-accent italic text-[#005B45] font-normal">
-                Drive real service.
-              </span>
-            </h1>
+          <p className="text-base font-sans text-[#66756F] leading-relaxed">
+            Join hundreds of passionate students, working professionals, and digital creators across Mumbai. We offer official Certificates of Appreciation & Letterheads signed by Trustees for 45-hour academic social service internships.
+          </p>
+        </div>
 
-            <p className="text-base font-sans text-[#66756F] leading-relaxed max-w-xl">
-              Join hundreds of passionate students, working professionals, and digital creators across Mumbai. We offer official Certificates of Appreciation signed by Trustees for 45-hour academic social service internships.
+        {/* Volunteer Certification & Recognition Section */}
+        <div className="bg-[#003D31] text-white p-8 sm:p-12 border border-white/10 mb-20">
+          <div className="max-w-2xl mb-8 space-y-2">
+            <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
+              Official Volunteer Certification
+            </span>
+            <h2 className="font-serif text-3xl text-white">
+              Earn Official Recognition for Your Service
+            </h2>
+            <p className="text-xs font-sans text-white/80 leading-relaxed">
+              Volunteers completing 45 hours of field drives, supply logistics, or digital contributions receive official Foundation Certificates & Trustee Recommendation Letterheads.
             </p>
           </div>
 
-          <div className="lg:col-span-5 relative aspect-4/3 border border-[#17352D]/15 overflow-hidden bg-[#EAE8DE]">
-            <Image
-              src="/assets/foundation-certificate.png"
-              alt="Official Volunteer Internship Certificate"
-              fill
-              sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-contain"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* Official Certificate Card */}
+            <div className="bg-emerald-950/80 p-6 border border-white/15 space-y-4">
+              <div className="flex items-center gap-2 text-[#63BE21]">
+                <Award className="w-5 h-5" />
+                <span className="text-xs font-sans font-bold uppercase tracking-wider">
+                  Certificate of Appreciation
+                </span>
+              </div>
+              <div className="relative aspect-4/3 border border-white/20 bg-white overflow-hidden">
+                <Image
+                  src="/assets/foundation-certificate.png"
+                  alt="Official Volunteer Certificate of Appreciation"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 30vw"
+                  className="object-contain p-2"
+                />
+              </div>
+              <p className="text-xs font-sans text-white/70">
+                Awarded to volunteers for outstanding contribution and commitment to social welfare drives.
+              </p>
+            </div>
+
+            {/* Official Letterhead Recommendation */}
+            <div className="bg-emerald-950/80 p-6 border border-white/15 space-y-4">
+              <div className="flex items-center gap-2 text-[#63BE21]">
+                <FileText className="w-5 h-5" />
+                <span className="text-xs font-sans font-bold uppercase tracking-wider">
+                  Official Recommendation Letterhead
+                </span>
+              </div>
+              <div className="relative aspect-4/3 border border-white/20 bg-white overflow-hidden">
+                <Image
+                  src="/assets/foundation-letterhead.png"
+                  alt="Official Foundation Letterhead Recommendation"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 30vw"
+                  className="object-contain p-2"
+                />
+              </div>
+              <p className="text-xs font-sans text-white/70">
+                Official institutional recommendation letter signed by Treasurer Priyanka Barge & IT Lead Prem Baraskar for academic credit.
+              </p>
+            </div>
+
           </div>
         </div>
 

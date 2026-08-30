@@ -54,33 +54,41 @@ INSTRUCTIONS:
       });
     }
 
-    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
-        messages: formattedMessages,
-        temperature: 0.7,
-        max_tokens: 350,
-      }),
-    });
+    // Try models in order: llama-3.3-70b-versatile -> llama3-70b-8192 -> llama3-8b-8192
+    const modelsToTry = ["llama-3.3-70b-versatile", "llama3-70b-8192", "llama3-8b-8192"];
+    let responseText = "";
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Groq API error:", errorText);
+    for (const model of modelsToTry) {
+      try {
+        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model,
+            messages: formattedMessages,
+            temperature: 0.7,
+            max_tokens: 350,
+          }),
+        });
 
-      return NextResponse.json({
-        reply: `Hello! I am Sarthi AI. How can I help you today? You can make a direct donation, join as a volunteer for our Annual Drive on 5th Sep 2026, or reach us at ${SITE_CONFIG.email}.`,
-      });
+        if (response.ok) {
+          const data = await response.json();
+          responseText = data.choices?.[0]?.message?.content || "";
+          if (responseText) break;
+        }
+      } catch (err) {
+        console.error(`Groq error for model ${model}:`, err);
+      }
     }
 
-    const data = await response.json();
-    const reply = data.choices?.[0]?.message?.content || "Thank you for reaching out to Sankalp Sarthi Foundation!";
+    if (!responseText) {
+      responseText = `Hello! I am Sarthi AI. How can I help you today? You can make a direct donation, join as a volunteer for our Annual Drive on 5th Sep 2026, or reach us at ${SITE_CONFIG.email}.`;
+    }
 
-    return NextResponse.json({ reply });
+    return NextResponse.json({ reply: responseText });
   } catch (error: any) {
     console.error("Chat API handler error:", error);
     return NextResponse.json({
