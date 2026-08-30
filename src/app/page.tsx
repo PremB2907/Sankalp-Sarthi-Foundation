@@ -5,7 +5,7 @@ import { ImpactStats } from "@/components/impact-stats";
 import { CausesGrid } from "@/components/causes-grid";
 import { CampaignCard } from "@/components/campaign-card";
 import { TrustBadges } from "@/components/trust-badges";
-import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle, Newspaper } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
 
 export default function HomePage() {
@@ -24,17 +24,17 @@ export default function HomePage() {
       {/* 4. Active Campaign (Annual Drive 5th Sept 2026) */}
       <CampaignCard />
 
-      {/* 5. Editorial Photo Stories */}
+      {/* 5. Editorial Photo Stories & Press Section */}
       <section className="py-24 bg-[#F7F6F0] border-b border-[#17352D]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="space-y-2">
               <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
-                Field Documentation
+                Field Documentation & Press Media
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#17352D]">
-                Real drives, real smiles, real service
+                Real drives, real smiles, verified community impact
               </h2>
             </div>
 
@@ -42,73 +42,95 @@ export default function HomePage() {
               href="/gallery"
               className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45] hover:text-[#003D31] flex items-center gap-1.5 transition-colors"
             >
-              View Full Photo Archive
+              View All 10 Field Photos & News Clippings
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
             <div className="space-y-3 group border border-[#17352D]/15 bg-white p-4">
               <div className="relative aspect-4/3 overflow-hidden bg-[#EAE8DE]">
                 <Image
-                  src="/assets/annual-drive-poster.png"
+                  src="/assets/drives/drive_1.jpg"
                   alt="School Supplies Distribution Drive"
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#005B45] block">
-                Education Drive
+                Palghar School Drive
               </span>
-              <h3 className="font-serif font-bold text-lg text-[#17352D] group-hover:text-[#005B45] transition-colors">
-                School Bags & Stationery Distribution
+              <h3 className="font-serif font-bold text-base text-[#17352D] group-hover:text-[#005B45] transition-colors leading-tight">
+                Book Distribution Programme
               </h3>
               <p className="text-xs font-sans text-[#66756F]">
-                Equipping underprivileged primary students with complete learning kits across rural centers.
+                Volunteers delivering complete learning kits to primary school children across Palghar district.
               </p>
             </div>
 
             <div className="space-y-3 group border border-[#17352D]/15 bg-white p-4">
               <div className="relative aspect-4/3 overflow-hidden bg-[#EAE8DE]">
                 <Image
-                  src="/assets/foundation-certificate.png"
-                  alt="Youth Internship Documentation"
+                  src="/assets/drives/drive_7.jpg"
+                  alt="Classroom Refreshment Drive"
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#005B45] block">
-                Youth Internships
+                Classroom Nutrition
               </span>
-              <h3 className="font-serif font-bold text-lg text-[#17352D] group-hover:text-[#005B45] transition-colors">
-                Social Service Academic Internships
+              <h3 className="font-serif font-bold text-base text-[#17352D] group-hover:text-[#005B45] transition-colors leading-tight">
+                Student Juice & Snack Drives
               </h3>
               <p className="text-xs font-sans text-[#66756F]">
-                Mentoring college students in 45-hour social service programs with official Certificates of Appreciation.
+                Serving fresh fruit juices and wholesome nutrition to seated young learners.
               </p>
             </div>
 
             <div className="space-y-3 group border border-[#17352D]/15 bg-white p-4">
               <div className="relative aspect-4/3 overflow-hidden bg-[#EAE8DE]">
                 <Image
-                  src="/assets/foundation-letterhead.png"
-                  alt="Hospital Patient Care Document"
+                  src="/assets/drives/drive_8.jpg"
+                  alt="Volunteer Notebook Packing Operations"
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#005B45] block">
-                Hospital Care
+                Volunteer Operations
               </span>
-              <h3 className="font-serif font-bold text-lg text-[#17352D] group-hover:text-[#005B45] transition-colors">
-                Nutritional Patient & Caregiver Kits
+              <h3 className="font-serif font-bold text-base text-[#17352D] group-hover:text-[#005B45] transition-colors leading-tight">
+                Sorting 1,000s of Notebooks
               </h3>
               <p className="text-xs font-sans text-[#66756F]">
-                Providing fruit baskets, milk, and nutritional supplements in municipal government hospitals.
+                Youth volunteer team organizing and bundling education kits for rural school logistics.
+              </p>
+            </div>
+
+            <div className="space-y-3 group border border-[#17352D]/15 bg-white p-4">
+              <div className="relative aspect-4/3 overflow-hidden bg-[#EAE8DE]">
+                <Image
+                  src="/assets/drives/newspaper_clipping.png"
+                  alt="Jagaruk Times Newspaper Coverage"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#005B45] block flex items-center gap-1">
+                <Newspaper className="w-3 h-3 text-[#005B45]" />
+                Press Coverage
+              </span>
+              <h3 className="font-serif font-bold text-base text-[#17352D] group-hover:text-[#005B45] transition-colors leading-tight">
+                Jagaruk Times Media Feature
+              </h3>
+              <p className="text-xs font-sans text-[#66756F]">
+                Press coverage of Sankalp Sarthi Foundation’s Republic Day free blanket drive at Gorai Old Age Home.
               </p>
             </div>
 

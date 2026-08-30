@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 
 interface WorkSection {
   num: string;
@@ -20,17 +20,17 @@ const WORK_SECTIONS: WorkSection[] = [
     num: "01",
     title: "EDUCATION & SCHOOL KITS",
     subtitle: "Empowering children with essential learning tools",
-    description: "Many children in rural and semi-urban Mumbai attend school without notebooks, pens, or durable school bags. Sankalp Sarthi Foundation delivers complete education kits directly to underprivileged primary students.",
-    image: "/assets/annual-drive-poster.png",
+    description: "Many children in rural Palghar and semi-urban Mumbai attend school without notebooks, writing sets, or durable school bags. Sankalp Sarthi Foundation delivers complete education kits directly to underprivileged primary students.",
+    image: "/assets/drives/backpack_distribution.jpg",
     metric: "1,200+ Students Supported",
-    items: ["Durable Backpacks", "Notebooks & Exercise Books", "Geometry & Writing Sets", "Drawing Kits & Color Pencils"],
+    items: ["Durable Backpacks", "Notebooks & Exercise Books", "Writing Instruments & Geometry Sets", "Drawing Kits & Color Pencils"],
   },
   {
     num: "02",
     title: "FOOD & NOURISHMENT",
     subtitle: "Wholesome meal drives & hospital patient care",
     description: "Hunger is an immediate crisis for street families and daily wage laborers. We cook, pack, and distribute fresh wholesome meals. Additionally, we provide fruit hampers and caregiver kits to patients in public municipal hospitals.",
-    image: "/assets/foundation-certificate.png",
+    image: "/assets/drives/hospital_fruit_crates.jpg",
     metric: "15,000+ Meals & 850+ Patients",
     items: ["Fresh Cooked Meals", "Clean Drinking Water", "Hospital Fruit Hampers", "Nutritional Caregiver Kits"],
   },
@@ -39,7 +39,7 @@ const WORK_SECTIONS: WorkSection[] = [
     title: "COMMUNITY SERVICE",
     subtitle: "Grassroots volunteer drives & emergency aid",
     description: "Driven entirely by youth and community volunteers, we conduct seasonal monsoon raincoat distributions, winter blanket drives, neighborhood cleanliness workshops, and disaster relief activities.",
-    image: "/assets/foundation-letterhead.png",
+    image: "/assets/drives/drive_8.jpg",
     metric: "50+ Grassroots Drives",
     items: ["Winter Blanket Drives", "Monsoon Umbrella & Raincoat Distribution", "Cleanliness & Awareness Workshops", "Emergency Disaster Assistance"],
   },
@@ -129,7 +129,7 @@ export function CausesGrid() {
 
               </div>
 
-              {/* Photography */}
+              {/* Real Drive Photography */}
               <div className="lg:col-span-6">
                 <div className="relative aspect-16/10 border border-[#17352D]/15 overflow-hidden bg-[#EAE8DE]">
                   <Image

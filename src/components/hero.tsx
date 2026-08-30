@@ -61,21 +61,21 @@ export function Hero() {
               </div>
               <div className="w-1 h-1 rounded-full bg-[#17352D]/30" />
               <div>
-                <span className="font-bold text-[#17352D]">Mumbai, India</span>
+                <span className="font-bold text-[#17352D]">Mumbai & Palghar, India</span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Editorial Photography Treatment */}
+          {/* Right Column: Editorial Photography Treatment with Real Field Photo */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Asymmetric Image Frame */}
-              <div className="relative aspect-4/5 overflow-hidden border border-[#17352D]/15 bg-[#EAE8DE]">
+              {/* Real Photo Frame */}
+              <div className="relative aspect-4/3 sm:aspect-4/5 overflow-hidden border border-[#17352D]/15 bg-[#EAE8DE]">
                 <Image
-                  src="/assets/annual-drive-poster.png"
-                  alt="Sankalp Sarthi Foundation School Supplies Drive"
+                  src="/assets/drives/drive_1.jpg"
+                  alt="Sankalp Sarthi Foundation Book Distribution Programme Drive"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover"
@@ -85,13 +85,13 @@ export function Hero() {
                 {/* Image Overlay Label */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 bg-[#003D31]/95 text-white backdrop-blur-xs border-t border-white/10">
                   <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#63BE21] block mb-1">
-                    Featured Initiative
+                    On-Ground Field Action
                   </span>
                   <h3 className="font-serif text-lg text-white font-bold leading-snug">
-                    Annual School Supplies Drive — 5th Sept 2026
+                    Book Distribution Programme
                   </h3>
                   <p className="text-xs font-sans text-white/80 mt-1">
-                    Targeting 500+ children across rural schools.
+                    Volunteers & primary school children during rural learning kit distribution.
                   </p>
                 </div>
               </div>
