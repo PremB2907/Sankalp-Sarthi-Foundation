@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #f8faf8;
+    --foreground: #111827;
+    --brand-green: #0a4d2e;
+    --brand-green-dark: #063720;
+    --brand-green-light: #126e43;
+    --brand-lime: #5cb817;
+    --brand-lime-hover: #4ea111;
+    --brand-blue: #1e56a0;
+    --brand-blue-light: #3b82f6;
+    --surface-card: #ffffff;
+    --muted-bg: #f0f4f1;
+    --border-color: #e2e8f0;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom Utility Classes */
+.bg-brand-green {
+  background-color: var(--brand-green);
+}
+.bg-brand-green-dark {
+  background-color: var(--brand-green-dark);
+}
+.bg-brand-green-light {
+  background-color: var(--brand-green-light);
+}
+.text-brand-green {
+  color: var(--brand-green);
+}
+.text-brand-lime {
+  color: var(--brand-lime);
+}
+.bg-brand-lime {
+  background-color: var(--brand-lime);
+}
+.bg-brand-lime:hover {
+  background-color: var(--brand-lime-hover);
+}
+.border-brand-green {
+  border-color: var(--brand-green);
+}
+.border-brand-lime {
+  border-color: var(--brand-lime);
+}
+
+.text-brand-blue {
+  color: var(--brand-blue);
+}
+.bg-brand-blue {
+  background-color: var(--brand-blue);
+}
+
+/* Soft hero mesh gradient */
+.hero-gradient {
+  background: radial-gradient(circle at 10% 20%, rgba(92, 184, 23, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(30, 86, 160, 0.08) 0%, transparent 40%),
+              linear-gradient(180deg, #f8faf8 0%, #ffffff 100%);
+}
+
+.hero-dark-gradient {
+  background: radial-gradient(circle at 80% 20%, rgba(92, 184, 23, 0.15) 0%, transparent 50%),
+              linear-gradient(135deg, #063720 0%, #0a4d2e 60%, #0f5a38 100%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #0a4d2e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #063720;
+}
