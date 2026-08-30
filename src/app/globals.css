@@ -1,98 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
 @import "tailwindcss";
 
 @layer base {
   :root {
-    --background: #f8faf8;
-    --foreground: #111827;
-    --brand-green: #0a4d2e;
-    --brand-green-dark: #063720;
-    --brand-green-light: #126e43;
-    --brand-lime: #5cb817;
-    --brand-lime-hover: #4ea111;
-    --brand-blue: #1e56a0;
-    --brand-blue-light: #3b82f6;
-    --surface-card: #ffffff;
-    --muted-bg: #f0f4f1;
-    --border-color: #e2e8f0;
+    --deep-green: #005b45;
+    --dark-green: #003d31;
+    --fresh-green: #39b54a;
+    --lime: #63be21;
+    --royal-blue: #2854a6;
+    --warm-white: #f7f6f0;
+    --white: #ffffff;
+    --text: #17352d;
+    --muted: #66756f;
+    --border-subtle: rgba(23, 53, 45, 0.12);
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--warm-white);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
   html {
     scroll-behavior: smooth;
+    background-color: var(--warm-white);
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+  }
+
+  .font-accent {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+  }
+
+  .font-sans {
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 }
 
-/* Custom Utility Classes */
-.bg-brand-green {
-  background-color: var(--brand-green);
+/* Custom Editorial Color Helpers */
+.bg-warm-white {
+  background-color: var(--warm-white);
 }
-.bg-brand-green-dark {
-  background-color: var(--brand-green-dark);
+.bg-deep-green {
+  background-color: var(--deep-green);
 }
-.bg-brand-green-light {
-  background-color: var(--brand-green-light);
+.bg-dark-green {
+  background-color: var(--dark-green);
 }
-.text-brand-green {
-  color: var(--brand-green);
+.text-deep-green {
+  color: var(--deep-green);
 }
-.text-brand-lime {
-  color: var(--brand-lime);
+.text-dark-green {
+  color: var(--dark-green);
 }
-.bg-brand-lime {
-  background-color: var(--brand-lime);
+.text-fresh-green {
+  color: var(--fresh-green);
 }
-.bg-brand-lime:hover {
-  background-color: var(--brand-lime-hover);
+.text-lime {
+  color: var(--lime);
 }
-.border-brand-green {
-  border-color: var(--brand-green);
+.text-royal-blue {
+  color: var(--royal-blue);
 }
-.border-brand-lime {
-  border-color: var(--brand-lime);
+.text-custom-text {
+  color: var(--text);
 }
-
-.text-brand-blue {
-  color: var(--brand-blue);
+.text-custom-muted {
+  color: var(--muted);
 }
-.bg-brand-blue {
-  background-color: var(--brand-blue);
-}
-
-/* Soft hero mesh gradient */
-.hero-gradient {
-  background: radial-gradient(circle at 10% 20%, rgba(92, 184, 23, 0.08) 0%, transparent 40%),
-              radial-gradient(circle at 90% 80%, rgba(30, 86, 160, 0.08) 0%, transparent 40%),
-              linear-gradient(180deg, #f8faf8 0%, #ffffff 100%);
+.border-subtle {
+  border-color: var(--border-subtle);
 }
 
-.hero-dark-gradient {
-  background: radial-gradient(circle at 80% 20%, rgba(92, 184, 23, 0.15) 0%, transparent 50%),
-              linear-gradient(135deg, #063720 0%, #0a4d2e 60%, #0f5a38 100%);
+/* Editorial Button Hover */
+.btn-editorial-primary {
+  background-color: var(--deep-green);
+  color: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+}
+.btn-editorial-primary:hover {
+  background-color: var(--dark-green);
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+.btn-editorial-outline {
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+}
+.btn-editorial-outline:hover {
+  background-color: var(--text);
+  color: var(--warm-white);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--warm-white);
 }
 ::-webkit-scrollbar-thumb {
-  background: #0a4d2e;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #063720;
+  background: var(--deep-green);
+  border-radius: 2px;
 }

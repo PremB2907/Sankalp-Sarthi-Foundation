@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { SITE_CONFIG } from "@/config/site";
-import { Users, CheckCircle2, MessageCircle, AlertCircle, Award } from "lucide-react";
+import { MessageCircle, CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
 
 export default function VolunteerPage() {
   const [formData, setFormData] = useState({
@@ -62,58 +63,73 @@ export default function VolunteerPage() {
   };
 
   return (
-    <div className="py-12 bg-gray-50 min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-20 bg-[#F7F6F0] min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Banner */}
-        <div className="text-center space-y-3 mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-xs font-semibold text-emerald-900">
-            <Award className="w-4 h-4 text-emerald-700" />
-            <span>Official Certificates Issued for Social Service Internships</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+          <div className="lg:col-span-7 space-y-4">
+            <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+              Volunteer Network & Internships
+            </span>
+
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#17352D] leading-tight">
+              Become a volunteer. <br />
+              <span className="font-accent italic text-[#005B45] font-normal">
+                Drive real service.
+              </span>
+            </h1>
+
+            <p className="text-base font-sans text-[#66756F] leading-relaxed max-w-xl">
+              Join hundreds of passionate students, working professionals, and digital creators across Mumbai. We offer official Certificates of Appreciation signed by Trustees for 45-hour academic social service internships.
+            </p>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-gray-900">
-            Become a Sankalp Sarthi Volunteer
-          </h1>
-
-          <p className="text-sm text-gray-600 max-w-xl mx-auto">
-            Join hundreds of passionate students, working professionals, and community leaders driving change on the ground across Mumbai.
-          </p>
+          <div className="lg:col-span-5 relative aspect-4/3 border border-[#17352D]/15 overflow-hidden bg-[#EAE8DE]">
+            <Image
+              src="/assets/foundation-certificate.png"
+              alt="Official Volunteer Internship Certificate"
+              fill
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-contain"
+            />
+          </div>
         </div>
 
+        {/* Form Container */}
         {success ? (
-          /* Success Screen */
-          <div className="bg-white p-8 sm:p-12 rounded-3xl border border-gray-200 shadow-xl text-center space-y-6">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center">
-              <CheckCircle2 className="w-8 h-8" />
-            </div>
-
-            <h2 className="font-serif text-2xl font-bold text-gray-900">
+          <div className="max-w-2xl mx-auto bg-white p-12 border border-[#17352D]/15 text-center space-y-6">
+            <CheckCircle2 className="w-12 h-12 text-[#005B45] mx-auto" />
+            <h2 className="font-serif text-3xl text-[#17352D]">
               Welcome to the Sankalp Sarthi Family!
             </h2>
-
-            <p className="text-sm text-gray-700 max-w-md mx-auto leading-relaxed">
-              Your volunteer application has been submitted successfully. You can now join our official volunteer WhatsApp group to receive instant drive updates and coordinate with on-ground teams.
+            <p className="text-sm font-sans text-[#66756F]">
+              Your volunteer application has been recorded. You can now join our official volunteer WhatsApp community to coordinate with on-ground drive teams.
             </p>
-
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={SITE_CONFIG.socialLinks.whatsappVolunteer}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3.5 text-sm font-bold text-white bg-emerald-700 hover:bg-emerald-800 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
-              >
-                <MessageCircle className="w-4 h-4 text-lime-400" />
-                Join Official Volunteer WhatsApp Group
-              </a>
-            </div>
+            <a
+              href={SITE_CONFIG.socialLinks.whatsappVolunteer}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 text-xs font-sans font-bold tracking-widest text-[#003D31] bg-[#63BE21] hover:bg-lime-400 uppercase transition-all"
+            >
+              <MessageCircle className="w-4 h-4 text-[#003D31]" />
+              JOIN OFFICIAL VOLUNTEER WHATSAPP GROUP →
+            </a>
           </div>
         ) : (
-          /* Form Screen */
-          <div className="bg-white p-6 sm:p-10 rounded-3xl border border-gray-200 shadow-xl space-y-6">
+          <div className="max-w-3xl mx-auto bg-white p-8 sm:p-12 border border-[#17352D]/15 space-y-8">
             
+            <div>
+              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+                Application Form
+              </span>
+              <h2 className="font-serif text-3xl text-[#17352D] mt-1">
+                Volunteer Registration
+              </h2>
+            </div>
+
             {errorMessage && (
-              <div className="p-4 bg-red-50 text-red-700 text-xs rounded-2xl border border-red-200 flex items-center gap-2">
+              <div className="p-4 bg-red-50 text-red-700 text-xs font-sans border border-red-200 flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{errorMessage}</span>
               </div>
@@ -123,7 +139,7 @@ export default function VolunteerPage() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  <label className="block text-xs font-sans font-semibold text-[#17352D] mb-1">
                     Full Name *
                   </label>
                   <input
@@ -131,13 +147,13 @@ export default function VolunteerPage() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Your Full Name"
-                    className="w-full px-3.5 py-2.5 text-xs border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none"
+                    placeholder="Full Name"
+                    className="w-full px-4 py-3 text-xs font-sans bg-[#F7F6F0] border border-[#17352D]/20 outline-none focus:border-[#005B45]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  <label className="block text-xs font-sans font-semibold text-[#17352D] mb-1">
                     Email Address *
                   </label>
                   <input
@@ -146,15 +162,15 @@ export default function VolunteerPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="your@email.com"
-                    className="w-full px-3.5 py-2.5 text-xs border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none"
+                    className="w-full px-4 py-3 text-xs font-sans bg-[#F7F6F0] border border-[#17352D]/20 outline-none focus:border-[#005B45]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">
-                    Phone / WhatsApp No *
+                  <label className="block text-xs font-sans font-semibold text-[#17352D] mb-1">
+                    Phone / WhatsApp *
                   </label>
                   <input
                     type="tel"
@@ -162,12 +178,12 @@ export default function VolunteerPage() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 9876543210"
-                    className="w-full px-3.5 py-2.5 text-xs border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none"
+                    className="w-full px-4 py-3 text-xs font-sans bg-[#F7F6F0] border border-[#17352D]/20 outline-none focus:border-[#005B45]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  <label className="block text-xs font-sans font-semibold text-[#17352D] mb-1">
                     City / Location *
                   </label>
                   <input
@@ -176,18 +192,18 @@ export default function VolunteerPage() {
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                     placeholder="Mumbai / Thane"
-                    className="w-full px-3.5 py-2.5 text-xs border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none"
+                    className="w-full px-4 py-3 text-xs font-sans bg-[#F7F6F0] border border-[#17352D]/20 outline-none focus:border-[#005B45]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  <label className="block text-xs font-sans font-semibold text-[#17352D] mb-1">
                     Occupation *
                   </label>
                   <select
                     value={formData.occupation}
                     onChange={(e) => setFormData({ ...formData, occupation: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-xs bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none"
+                    className="w-full px-4 py-3 text-xs font-sans bg-[#F7F6F0] border border-[#17352D]/20 outline-none focus:border-[#005B45]"
                   >
                     <option value="Student">Student (B.Tech / Degree)</option>
                     <option value="Working Professional">Working Professional</option>
@@ -198,9 +214,9 @@ export default function VolunteerPage() {
                 </div>
               </div>
 
-              {/* Areas of Interest */}
+              {/* Interests */}
               <div>
-                <label className="block text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-sans font-bold uppercase tracking-widest text-[#17352D] mb-2">
                   Areas of Interest *
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -215,17 +231,17 @@ export default function VolunteerPage() {
                     <label
                       key={interest}
                       onClick={() => handleInterestToggle(interest)}
-                      className={`p-3 rounded-xl border text-xs font-medium cursor-pointer flex items-center gap-2 transition-all ${
+                      className={`p-3 border text-xs font-sans font-medium cursor-pointer flex items-center gap-2 transition-all ${
                         selectedInterests.includes(interest)
-                          ? "bg-emerald-50 border-emerald-600 text-emerald-950 font-semibold"
-                          : "bg-white border-gray-200 text-gray-700 hover:border-gray-300"
+                          ? "bg-[#F7F6F0] border-[#005B45] text-[#005B45] font-bold"
+                          : "bg-white border-[#17352D]/20 text-[#17352D]"
                       }`}
                     >
                       <input
                         type="checkbox"
                         checked={selectedInterests.includes(interest)}
                         onChange={() => {}}
-                        className="w-4 h-4 rounded text-emerald-700 focus:ring-emerald-600"
+                        className="w-4 h-4 text-[#005B45] focus:ring-0"
                       />
                       <span>{interest}</span>
                     </label>
@@ -235,7 +251,7 @@ export default function VolunteerPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  <label className="block text-xs font-sans font-semibold text-[#17352D] mb-1">
                     Your Key Skills *
                   </label>
                   <input
@@ -243,19 +259,19 @@ export default function VolunteerPage() {
                     required
                     value={formData.skills}
                     onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
-                    placeholder="e.g. Design, Field Management, Coding, Photography"
-                    className="w-full px-3.5 py-2.5 text-xs border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none"
+                    placeholder="e.g. Design, Logistics, Coding, Photo"
+                    className="w-full px-4 py-3 text-xs font-sans bg-[#F7F6F0] border border-[#17352D]/20 outline-none focus:border-[#005B45]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  <label className="block text-xs font-sans font-semibold text-[#17352D] mb-1">
                     Availability *
                   </label>
                   <select
                     value={formData.availability}
                     onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-xs bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none"
+                    className="w-full px-4 py-3 text-xs font-sans bg-[#F7F6F0] border border-[#17352D]/20 outline-none focus:border-[#005B45]"
                   >
                     <option value="Weekends">Weekends Only</option>
                     <option value="Weekdays">Weekdays</option>
@@ -266,25 +282,24 @@ export default function VolunteerPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">
-                  Why do you want to volunteer with us? (Optional)
+                <label className="block text-xs font-sans font-semibold text-[#17352D] mb-1">
+                  Why do you want to volunteer? (Optional)
                 </label>
                 <textarea
                   rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Share a short note on your motivation..."
-                  className="w-full px-3.5 py-2.5 text-xs border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none"
+                  placeholder="Share a short note..."
+                  className="w-full px-4 py-3 text-xs font-sans bg-[#F7F6F0] border border-[#17352D]/20 outline-none focus:border-[#005B45]"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-4 text-sm font-bold text-white bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+                className="w-full py-4 text-xs font-sans font-bold tracking-widest text-white bg-[#005B45] hover:bg-[#003D31] disabled:opacity-50 uppercase transition-all"
               >
-                <Users className="w-4 h-4" />
-                {submitting ? "Submitting Application..." : "Submit Volunteer Registration"}
+                {submitting ? "SUBMITTING..." : "BECOME A VOLUNTEER →"}
               </button>
 
             </form>

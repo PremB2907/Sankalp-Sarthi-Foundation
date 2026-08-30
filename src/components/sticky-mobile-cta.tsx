@@ -1,25 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, Users } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function StickyMobileCTA() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 p-3 shadow-lg">
-      <div className="flex items-center gap-2 max-w-md mx-auto">
+    <div className="fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-[#F7F6F0]/95 backdrop-blur-md border-t border-[#17352D]/15 p-3 shadow-lg">
+      <div className="flex items-center gap-2.5 max-w-md mx-auto">
         <Link
           href="/volunteer"
-          className="flex-1 py-2.5 px-3 text-xs font-semibold text-center text-emerald-900 bg-emerald-50 border border-emerald-200 rounded-xl"
+          className="flex-1 py-3 text-xs font-sans font-bold tracking-wider text-center text-[#17352D] bg-transparent border border-[#17352D] uppercase rounded-xs"
         >
-          <Users className="w-3.5 h-3.5 inline mr-1 text-emerald-600" />
-          Volunteer
+          Volunteer ↗
         </Link>
         <Link
           href="/donate"
-          className="flex-[2] py-2.5 px-4 text-xs font-bold text-center text-white bg-emerald-700 hover:bg-emerald-800 rounded-xl shadow-md flex items-center justify-center gap-1.5"
+          className="flex-[2] py-3 text-xs font-sans font-bold tracking-widest text-center text-white bg-[#005B45] hover:bg-[#003D31] uppercase rounded-xs shadow-xs"
         >
-          <Heart className="w-4 h-4 fill-white" />
-          Donate Now
+          DONATE NOW →
         </Link>
       </div>
     </div>

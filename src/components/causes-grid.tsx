@@ -3,150 +3,200 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CAUSES_DATA, Cause } from "@/config/causes";
-import { Heart, CheckCircle2, ArrowRight, X } from "lucide-react";
+import { ArrowUpRight, ArrowRight, X } from "lucide-react";
+
+interface WorkSection {
+  num: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  metric: string;
+  items: string[];
+}
+
+const WORK_SECTIONS: WorkSection[] = [
+  {
+    num: "01",
+    title: "EDUCATION & SCHOOL KITS",
+    subtitle: "Empowering children with essential learning tools",
+    description: "Many children in rural and semi-urban Mumbai attend school without notebooks, pens, or durable school bags. Sankalp Sarthi Foundation delivers complete education kits directly to underprivileged primary students.",
+    image: "/assets/annual-drive-poster.png",
+    metric: "1,200+ Students Supported",
+    items: ["Durable Backpacks", "Notebooks & Exercise Books", "Geometry & Writing Sets", "Drawing Kits & Color Pencils"],
+  },
+  {
+    num: "02",
+    title: "FOOD & NOURISHMENT",
+    subtitle: "Wholesome meal drives & hospital patient care",
+    description: "Hunger is an immediate crisis for street families and daily wage laborers. We cook, pack, and distribute fresh wholesome meals. Additionally, we provide fruit hampers and caregiver kits to patients in public municipal hospitals.",
+    image: "/assets/foundation-certificate.png",
+    metric: "15,000+ Meals & 850+ Patients",
+    items: ["Fresh Cooked Meals", "Clean Drinking Water", "Hospital Fruit Hampers", "Nutritional Caregiver Kits"],
+  },
+  {
+    num: "03",
+    title: "COMMUNITY SERVICE",
+    subtitle: "Grassroots volunteer drives & emergency aid",
+    description: "Driven entirely by youth and community volunteers, we conduct seasonal monsoon raincoat distributions, winter blanket drives, neighborhood cleanliness workshops, and disaster relief activities.",
+    image: "/assets/foundation-letterhead.png",
+    metric: "50+ Grassroots Drives",
+    items: ["Winter Blanket Drives", "Monsoon Umbrella & Raincoat Distribution", "Cleanliness & Awareness Workshops", "Emergency Disaster Assistance"],
+  },
+];
 
 export function CausesGrid() {
-  const [selectedCause, setSelectedCause] = useState<Cause | null>(null);
+  const [selectedSection, setSelectedSection] = useState<WorkSection | null>(null);
 
   return (
-    <section className="py-16 bg-gray-50/70">
+    <section className="py-24 bg-[#F7F6F0] border-b border-[#17352D]/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-          <div>
-            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
-              Core NGO Programs
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="space-y-2">
+            <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+              Core Foundation Initiatives
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mt-1">
-              Our Key Areas of Service
+            <h2 className="font-serif text-3xl sm:text-5xl text-[#17352D]">
+              Our Key Areas of Work
             </h2>
           </div>
+
           <Link
             href="/causes"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-800 hover:text-emerald-950 transition-colors"
+            className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45] hover:text-[#003D31] flex items-center gap-1.5 transition-colors"
           >
             Explore All Programs
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* Causes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {CAUSES_DATA.map((cause) => (
+        {/* Editorial Numbered Sections */}
+        <div className="space-y-16">
+          {WORK_SECTIONS.map((section, idx) => (
             <div
-              key={cause.id}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group"
+              key={section.num}
+              className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pb-16 ${
+                idx !== WORK_SECTIONS.length - 1 ? "border-b border-[#17352D]/10" : ""
+              }`}
             >
-              {/* Card Image */}
-              <div className="relative aspect-4/3 overflow-hidden bg-gray-100">
-                <Image
-                  src={cause.image}
-                  alt={cause.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 left-3 bg-emerald-900/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-md backdrop-blur-xs">
-                  {cause.impactMetric}
-                </div>
-              </div>
-
-              {/* Card Content */}
-              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <h3 className="font-serif font-bold text-lg text-gray-900 group-hover:text-emerald-700 transition-colors">
-                    {cause.title}
-                  </h3>
-                  <p className="text-xs font-medium text-emerald-700 mt-1">
-                    {cause.subtitle}
-                  </p>
-                  <p className="text-xs text-gray-600 mt-3 line-clamp-3 leading-relaxed">
-                    {cause.description}
-                  </p>
+              
+              {/* Text & Content */}
+              <div className="lg:col-span-6 space-y-6">
+                <div className="flex items-center gap-3">
+                  <span className="font-serif font-bold text-3xl text-[#005B45]">
+                    {section.num}
+                  </span>
+                  <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#66756F]">
+                    — {section.metric}
+                  </span>
                 </div>
 
-                <div className="pt-2 border-t border-gray-100 flex items-center gap-2">
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#17352D] leading-tight">
+                  {section.title}
+                </h3>
+
+                <p className="text-sm font-sans text-[#66756F] leading-relaxed">
+                  {section.description}
+                </p>
+
+                {/* Items List */}
+                <div className="grid grid-cols-2 gap-2 text-xs font-sans text-[#17352D]">
+                  {section.items.map((item) => (
+                    <div key={item} className="flex items-center gap-2 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#005B45]" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-4 flex items-center gap-4">
+                  <Link
+                    href={`/donate?cause=${encodeURIComponent(section.title)}`}
+                    className="px-6 py-3 text-xs font-sans font-bold tracking-widest text-white bg-[#005B45] hover:bg-[#003D31] uppercase transition-all rounded-xs shadow-xs"
+                  >
+                    SUPPORT THIS CAUSE →
+                  </Link>
+
                   <button
-                    onClick={() => setSelectedCause(cause)}
-                    className="flex-1 py-2 px-3 text-xs font-semibold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors"
+                    onClick={() => setSelectedSection(section)}
+                    className="text-xs font-sans font-semibold uppercase tracking-wider text-[#17352D] hover:text-[#005B45] underline transition-colors"
                   >
                     Read Details
                   </button>
-                  <Link
-                    href={`/donate?cause=${encodeURIComponent(cause.title)}`}
-                    className="py-2 px-3 text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 rounded-lg transition-colors flex items-center gap-1"
-                  >
-                    <Heart className="w-3.5 h-3.5 fill-white" />
-                    Support
-                  </Link>
+                </div>
+
+              </div>
+
+              {/* Photography */}
+              <div className="lg:col-span-6">
+                <div className="relative aspect-16/10 border border-[#17352D]/15 overflow-hidden bg-[#EAE8DE]">
+                  <Image
+                    src={section.image}
+                    alt={section.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute top-4 left-4 bg-[#003D31] text-white text-[10px] font-sans font-bold uppercase tracking-widest px-3 py-1.5">
+                    {section.subtitle}
+                  </div>
                 </div>
               </div>
+
             </div>
           ))}
         </div>
 
       </div>
 
-      {/* Cause Detail Modal */}
-      {selectedCause && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
-          <div className="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl relative border border-gray-100 max-h-[90vh] overflow-y-auto">
-            
+      {/* Modal Detail */}
+      {selectedSection && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#003D31]/80 backdrop-blur-xs animate-in fade-in duration-200">
+          <div className="bg-[#F7F6F0] rounded-xs max-w-2xl w-full overflow-hidden shadow-2xl relative border border-[#17352D]/20">
             <button
-              onClick={() => setSelectedCause(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white text-gray-700 shadow-md z-10"
+              onClick={() => setSelectedSection(null)}
+              className="absolute top-4 right-4 p-2 text-[#17352D] hover:text-[#005B45] z-10"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
 
-            <div className="relative aspect-16/9 bg-gray-100">
-              <Image
-                src={selectedCause.image}
-                alt={selectedCause.title}
-                fill
-                className="object-cover"
-              />
-            </div>
+            <div className="p-8 space-y-6">
+              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+                {selectedSection.num} — {selectedSection.metric}
+              </span>
+              
+              <h3 className="font-serif text-3xl text-[#17352D]">
+                {selectedSection.title}
+              </h3>
 
-            <div className="p-6 sm:p-8 space-y-6">
-              <div>
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
-                  {selectedCause.impactMetric}
-                </span>
-                <h3 className="font-serif text-2xl font-bold text-gray-900 mt-1">
-                  {selectedCause.title}
-                </h3>
-              </div>
-
-              <p className="text-sm text-gray-700 leading-relaxed">
-                {selectedCause.longDescription}
+              <p className="text-sm font-sans text-[#66756F] leading-relaxed">
+                {selectedSection.description}
               </p>
 
-              <div>
-                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3">
-                  What Your Donation Provides:
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {selectedCause.itemsProvided.map((item) => (
-                    <div key={item} className="flex items-center gap-2 text-xs text-gray-700 bg-emerald-50 p-2.5 rounded-lg border border-emerald-100">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="pt-4 space-y-2 border-t border-[#17352D]/10">
+                <span className="text-xs font-sans font-bold uppercase tracking-wider text-[#17352D]">
+                  Direct Beneficiary Deliverables:
+                </span>
+                <div className="grid grid-cols-2 gap-2 text-xs font-sans text-[#17352D]">
+                  {selectedSection.items.map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#005B45]" />
                       <span>{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-4 flex items-center gap-3">
+              <div className="pt-6">
                 <Link
-                  href={`/donate?cause=${encodeURIComponent(selectedCause.title)}`}
-                  className="flex-1 py-3 text-center text-sm font-bold text-white bg-emerald-700 hover:bg-emerald-800 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+                  href={`/donate?cause=${encodeURIComponent(selectedSection.title)}`}
+                  className="w-full py-4 text-center text-xs font-sans font-bold tracking-widest text-white bg-[#005B45] hover:bg-[#003D31] uppercase transition-all block"
                 >
-                  <Heart className="w-4 h-4 fill-white" />
-                  Donate to {selectedCause.title}
+                  DONATE TO THIS CAUSE NOW →
                 </Link>
               </div>
-
             </div>
 
           </div>

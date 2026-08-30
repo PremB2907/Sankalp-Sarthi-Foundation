@@ -1,9 +1,9 @@
 export const SITE_CONFIG = {
   name: "Sankalp Sarthi Foundation",
-  tagline: "Helping hands can make difference",
+  tagline: "Helping hands create lasting change",
   subTagline: "Small acts. Consistent service. Real impact.",
   regNo: "Mu/0001792/2025",
-  govApproved: "GOVT. APPROVED",
+  govApproved: "GOVT. APPROVED NONPROFIT",
   foundedYear: 2013,
   location: "Mumbai, Maharashtra, India",
   email: "sankalpsarthifoundation@gmail.com",
@@ -20,17 +20,17 @@ export const SITE_CONFIG = {
     whatsappDonation: "https://chat.whatsapp.com/Bo29izqVNsgJtFHgvUNQAT",
   },
 
-  quickDonationAmounts: [100, 250, 500, 1000, 2500],
+  quickDonationAmounts: [500, 1000, 2500, 5000],
 
   impactStats: [
-    { label: "Children Educated", count: "1,200+", description: "Notebooks, school bags, and stationery provided" },
-    { label: "Meals Served", count: "15,000+", description: "Homeless and vulnerable community food drives" },
-    { label: "Patients Supported", count: "850+", description: "Nutritional kits distributed at municipal hospitals" },
-    { label: "Active Volunteers", count: "250+", description: "Dedicated youth, professionals, and community leaders" },
+    { label: "SERVICE HOURS", count: "45+", description: "Dedicated social service internship and field hours" },
+    { label: "CHILDREN REACHED", count: "1,200+", description: "Provided with school bags, notebooks, and learning kits" },
+    { label: "MEALS SERVED", count: "15,000+", description: "Nutritious warm meals served to vulnerable street families" },
+    { label: "PATIENTS SUPPORTED", count: "850+", description: "Nutritional hampers distributed at public hospitals" },
   ],
 
   leadership: [
-    { name: "Priyanka Barge", title: "Treasurer & Founding Lead", role: "Operational Management & Community Engagement" },
-    { name: "Prem Baraskar", title: "IT Lead & Digital Strategy", role: "Digital Transformation & Volunteer Outreach" },
+    { name: "Priyanka Barge", title: "Treasurer & Founding Lead", role: "Operational Strategy & Governance" },
+    { name: "Prem Baraskar", title: "IT Lead & Digital Strategy", role: "Digital Transformation & Outreach" },
   ],
 };

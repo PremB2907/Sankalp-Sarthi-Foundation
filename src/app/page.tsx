@@ -5,162 +5,151 @@ import { ImpactStats } from "@/components/impact-stats";
 import { CausesGrid } from "@/components/causes-grid";
 import { CampaignCard } from "@/components/campaign-card";
 import { TrustBadges } from "@/components/trust-badges";
-import { Heart, Users, ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
 
 export default function HomePage() {
   return (
-    <div className="space-y-0">
+    <div className="space-y-0 bg-[#F7F6F0]">
       
       {/* 1. Hero */}
       <Hero />
 
-      {/* 2. Verified Impact Statistics */}
+      {/* 2. Impact Stats (Oversized Editorial Numbers) */}
       <ImpactStats />
 
-      {/* 3. Causes Grid */}
+      {/* 3. Our Work (01 EDUCATION, 02 NOURISHMENT, 03 COMMUNITY) */}
       <CausesGrid />
 
-      {/* 4. Featured Campaign (Annual Drive 5th Sept 2026) */}
+      {/* 4. Active Campaign (Annual Drive 5th Sept 2026) */}
       <CampaignCard />
 
-      {/* 5. Real Field Photos & Community Stories */}
-      <section className="py-16 bg-white">
+      {/* 5. Editorial Photo Stories */}
+      <section className="py-24 bg-[#F7F6F0] border-b border-[#17352D]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
-              Field Action Gallery
-            </span>
-            <h2 className="font-serif text-3xl font-bold text-gray-900 mt-1">
-              Real Drives, Real Smiles, Real Service
-            </h2>
-            <p className="text-sm text-gray-600 mt-2">
-              Every school bag given and warm meal served is made possible by people like you.
-            </p>
-          </div>
-
-          {/* Photo Grid showcasing real photos */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-md group border border-gray-100 bg-gray-100">
-              <Image
-                src="/assets/annual-drive-poster.png"
-                alt="Stationery distribution drive for school children"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-transparent to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-lime-400 bg-emerald-900/80 px-2 py-0.5 rounded">
-                  Education Drive
-                </span>
-                <h3 className="font-serif font-bold text-sm text-white mt-1">
-                  School Bags & Stationery Distribution
-                </h3>
-              </div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="space-y-2">
+              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+                Field Documentation
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#17352D]">
+                Real drives, real smiles, real service
+              </h2>
             </div>
 
-            <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-md group border border-gray-100 bg-gray-100">
-              <Image
-                src="/assets/foundation-certificate.png"
-                alt="Volunteer appreciation & community distribution"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-transparent to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-lime-400 bg-emerald-900/80 px-2 py-0.5 rounded">
-                  Youth Internships
-                </span>
-                <h3 className="font-serif font-bold text-sm text-white mt-1">
-                  Social Service Volunteer Internships
-                </h3>
-              </div>
-            </div>
-
-            <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-md group border border-gray-100 bg-gray-100">
-              <Image
-                src="/assets/foundation-letterhead.png"
-                alt="Hospital patient nutrition support"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-transparent to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-lime-400 bg-emerald-900/80 px-2 py-0.5 rounded">
-                  Hospital Care
-                </span>
-                <h3 className="font-serif font-bold text-sm text-white mt-1">
-                  Nutritional Support for Patients
-                </h3>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="text-center mt-10">
             <Link
               href="/gallery"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors"
+              className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45] hover:text-[#003D31] flex items-center gap-1.5 transition-colors"
             >
-              View Complete Field Photo Gallery
-              <ArrowRight className="w-3.5 h-3.5" />
+              View Full Photo Archive
+              <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div className="space-y-3 group border border-[#17352D]/15 bg-white p-4">
+              <div className="relative aspect-4/3 overflow-hidden bg-[#EAE8DE]">
+                <Image
+                  src="/assets/annual-drive-poster.png"
+                  alt="School Supplies Distribution Drive"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#005B45] block">
+                Education Drive
+              </span>
+              <h3 className="font-serif font-bold text-lg text-[#17352D] group-hover:text-[#005B45] transition-colors">
+                School Bags & Stationery Distribution
+              </h3>
+              <p className="text-xs font-sans text-[#66756F]">
+                Equipping underprivileged primary students with complete learning kits across rural centers.
+              </p>
+            </div>
+
+            <div className="space-y-3 group border border-[#17352D]/15 bg-white p-4">
+              <div className="relative aspect-4/3 overflow-hidden bg-[#EAE8DE]">
+                <Image
+                  src="/assets/foundation-certificate.png"
+                  alt="Youth Internship Documentation"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#005B45] block">
+                Youth Internships
+              </span>
+              <h3 className="font-serif font-bold text-lg text-[#17352D] group-hover:text-[#005B45] transition-colors">
+                Social Service Academic Internships
+              </h3>
+              <p className="text-xs font-sans text-[#66756F]">
+                Mentoring college students in 45-hour social service programs with official Certificates of Appreciation.
+              </p>
+            </div>
+
+            <div className="space-y-3 group border border-[#17352D]/15 bg-white p-4">
+              <div className="relative aspect-4/3 overflow-hidden bg-[#EAE8DE]">
+                <Image
+                  src="/assets/foundation-letterhead.png"
+                  alt="Hospital Patient Care Document"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#005B45] block">
+                Hospital Care
+              </span>
+              <h3 className="font-serif font-bold text-lg text-[#17352D] group-hover:text-[#005B45] transition-colors">
+                Nutritional Patient & Caregiver Kits
+              </h3>
+              <p className="text-xs font-sans text-[#66756F]">
+                Providing fruit baskets, milk, and nutritional supplements in municipal government hospitals.
+              </p>
+            </div>
+
           </div>
 
         </div>
       </section>
 
-      {/* 6. Volunteer Callout Banner */}
-      <section className="py-16 bg-emerald-900 text-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      {/* 6. Volunteer Callout Section */}
+      <section className="py-24 bg-[#005B45] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-8 space-y-4">
-              <span className="text-xs font-bold text-lime-400 uppercase tracking-widest">
+              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
                 Join Our Volunteer Network
               </span>
-              <h2 className="font-serif text-3xl font-bold text-white leading-tight">
+              <h2 className="font-serif text-3xl sm:text-5xl text-white leading-tight">
                 Want to make a hands-on difference in Mumbai?
               </h2>
-              <p className="text-sm text-emerald-100/90 max-w-2xl leading-relaxed">
-                Whether you are a college student looking to complete an internship, a working professional wanting to give back on weekends, or a digital creator—your skills can transform lives.
+              <p className="text-sm font-sans text-white/80 max-w-2xl leading-relaxed">
+                Whether you are a college student completing an academic internship or a working professional wanting to give back—your time and skills will transform lives.
               </p>
-              
-              <div className="flex flex-wrap gap-4 text-xs font-medium text-emerald-200 pt-2">
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-lime-400" />
-                  Flexible Weekend Drives
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-lime-400" />
-                  Official Internship Certificates
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-lime-400" />
-                  Digital Communications Team
-                </span>
-              </div>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+            <div className="lg:col-span-4 flex flex-col gap-4">
               <Link
                 href="/volunteer"
-                className="py-3 px-6 text-center text-sm font-bold text-emerald-950 bg-lime-400 hover:bg-lime-300 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                className="px-8 py-4 text-xs font-sans font-bold tracking-widest text-[#003D31] bg-[#63BE21] hover:bg-lime-400 uppercase transition-all text-center rounded-xs"
               >
-                <Users className="w-4 h-4 text-emerald-950" />
-                Apply as Volunteer
+                BECOME A VOLUNTEER →
               </Link>
 
               <a
                 href={SITE_CONFIG.socialLinks.whatsappVolunteer}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-6 text-center text-xs font-semibold text-emerald-100 bg-emerald-950 hover:bg-emerald-950/80 rounded-xl border border-emerald-700 transition-colors flex items-center justify-center gap-2"
+                className="px-6 py-3.5 text-xs font-sans font-semibold tracking-wider text-white border border-white/30 hover:border-white uppercase transition-all text-center rounded-xs flex items-center justify-center gap-2"
               >
-                <MessageCircle className="w-4 h-4 text-lime-400" />
-                Join WhatsApp Group
+                <MessageCircle className="w-4 h-4 text-[#63BE21]" />
+                JOIN WHATSAPP VOLUNTEER GROUP
               </a>
             </div>
 
@@ -168,7 +157,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Trust & Governance */}
+      {/* 7. Institutional Governance & Trust */}
       <TrustBadges />
 
     </div>

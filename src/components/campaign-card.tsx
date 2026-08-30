@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CAMPAIGNS_DATA } from "@/config/campaigns";
-import { Calendar, MapPin, Users, Heart, Share2, MessageCircle, CheckCircle2 } from "lucide-react";
+import { Calendar, MapPin, ArrowUpRight, Share2, MessageCircle } from "lucide-react";
 
 export function CampaignCard() {
   const campaign = CAMPAIGNS_DATA[0];
@@ -17,58 +17,60 @@ export function CampaignCard() {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.origin + "/campaigns/annual-drive-2026");
-      alert("Link copied to clipboard!");
+      alert("Campaign link copied to clipboard!");
     }
   };
 
   return (
-    <section className="py-16 bg-white border-t border-gray-100">
+    <section className="py-24 bg-[#003D31] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="bg-emerald-950 rounded-3xl overflow-hidden shadow-2xl border border-emerald-900 grid grid-cols-1 lg:grid-cols-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Poster Artwork Column */}
-          <div className="lg:col-span-6 relative aspect-16/10 lg:aspect-auto min-h-[320px] bg-emerald-900">
+          <div className="lg:col-span-6 relative aspect-16/11 border border-white/20 bg-emerald-950 overflow-hidden">
             <Image
               src={campaign.coverImage}
               alt={campaign.title}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-contain p-2"
               priority
             />
-            <div className="absolute top-4 left-4 bg-lime-500 text-emerald-950 font-bold text-xs px-3 py-1.5 rounded-full shadow-md uppercase tracking-wider">
-              Featured Annual Drive
+            <div className="absolute top-4 left-4 bg-[#63BE21] text-[#003D31] font-sans font-bold text-[10px] uppercase tracking-widest px-3 py-1.5">
+              Flagship Annual Drive
             </div>
           </div>
 
           {/* Details Column */}
-          <div className="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between space-y-6 text-white">
+          <div className="lg:col-span-6 space-y-8">
             
             <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-4 text-xs text-lime-400 font-semibold">
-                <span className="flex items-center gap-1.5 bg-emerald-900/80 px-3 py-1 rounded-full border border-emerald-800">
+              <div className="flex flex-wrap items-center gap-4 text-xs font-sans font-semibold text-[#63BE21] uppercase tracking-widest">
+                <span className="flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5" />
                   {campaign.date}
                 </span>
-                <span className="flex items-center gap-1.5 bg-emerald-900/80 px-3 py-1 rounded-full border border-emerald-800">
+                <span>•</span>
+                <span className="flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5" />
                   {campaign.location}
                 </span>
               </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              <h2 className="font-serif text-3xl sm:text-4xl text-white leading-tight">
                 {campaign.title}
               </h2>
 
-              <p className="text-sm text-emerald-200/90 leading-relaxed">
+              <p className="text-sm font-sans text-white/80 leading-relaxed">
                 {campaign.description}
               </p>
 
               {/* Highlights */}
-              <div className="space-y-2 pt-2">
+              <div className="space-y-2 pt-2 text-xs font-sans text-white/90">
                 {campaign.highlights.slice(0, 3).map((item) => (
-                  <div key={item} className="flex items-start gap-2 text-xs text-emerald-100">
-                    <CheckCircle2 className="w-4 h-4 text-lime-400 shrink-0 mt-0.5" />
+                  <div key={item} className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#63BE21] mt-1.5 shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -76,25 +78,26 @@ export function CampaignCard() {
             </div>
 
             {/* Campaign Actions */}
-            <div className="pt-4 border-t border-emerald-900/80 space-y-3">
-              <div className="flex flex-wrap items-center gap-3">
+            <div className="pt-6 border-t border-white/10 space-y-4">
+              <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href="/donate?campaign=annual-drive-2026"
-                  className="flex-1 min-w-[140px] py-3 text-center text-xs sm:text-sm font-bold text-emerald-950 bg-lime-400 hover:bg-lime-300 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                  className="px-7 py-3.5 text-xs font-sans font-bold tracking-widest text-[#003D31] bg-[#63BE21] hover:bg-lime-400 uppercase transition-all rounded-xs shadow-xs"
                 >
-                  <Heart className="w-4 h-4 fill-emerald-950" />
-                  Donate to Drive
+                  DONATE TO DRIVE NOW →
                 </Link>
+
                 <Link
                   href="/volunteer"
-                  className="py-3 px-4 text-xs sm:text-sm font-semibold text-emerald-100 bg-emerald-900 hover:bg-emerald-800 rounded-xl border border-emerald-700 transition-colors flex items-center gap-1.5"
+                  className="px-6 py-3.5 text-xs font-sans font-bold tracking-widest text-white border border-white/30 hover:border-white uppercase transition-all rounded-xs flex items-center gap-1"
                 >
-                  <Users className="w-4 h-4 text-lime-400" />
-                  Join Drive
+                  JOIN VOLUNTEER TEAM
+                  <ArrowUpRight className="w-4 h-4" />
                 </Link>
+
                 <button
                   onClick={handleShare}
-                  className="p-3 text-emerald-200 bg-emerald-900 hover:bg-emerald-800 rounded-xl border border-emerald-700 transition-colors"
+                  className="p-3 text-white border border-white/30 hover:border-white rounded-xs transition-colors"
                   title="Share Campaign"
                 >
                   <Share2 className="w-4 h-4" />
@@ -105,10 +108,10 @@ export function CampaignCard() {
                 href={campaign.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-2 text-xs text-emerald-300 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-sans text-white/70 hover:text-white transition-colors pt-2"
               >
-                <MessageCircle className="w-4 h-4 text-lime-400" />
-                <span>Join Official Drive WhatsApp Volunteer Group</span>
+                <MessageCircle className="w-4 h-4 text-[#63BE21]" />
+                <span>Join Official Annual Drive WhatsApp Volunteer Community</span>
               </a>
             </div>
 

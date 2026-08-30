@@ -1,174 +1,103 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/config/site";
-import { ShieldCheck, Heart, Users, CheckCircle2, Award, FileText } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata = {
   title: "About Us | Sankalp Sarthi Foundation",
-  description: "Learn about Sankalp Sarthi Foundation's mission, leadership, registration details, and 13+ year history of social service in Mumbai.",
+  description: "Learn about Sankalp Sarthi Foundation's mission, leadership, registration details, and social service history in Mumbai.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="py-12 space-y-16">
+    <div className="py-16 bg-[#F7F6F0] space-y-20">
       
-      {/* Header Banner */}
-      <section className="bg-emerald-950 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900 border border-emerald-700 text-xs font-semibold text-lime-400">
-            <ShieldCheck className="w-4 h-4" />
-            <span>Govt. Approved | Regd. No. {SITE_CONFIG.regNo}</span>
-          </div>
+      {/* Banner */}
+      <section className="bg-[#003D31] text-white py-20 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl space-y-4 text-center">
+          <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
+            {SITE_CONFIG.govApproved} • REGD. NO. {SITE_CONFIG.regNo}
+          </span>
           
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-white">
+          <h1 className="font-serif text-4xl sm:text-6xl text-white leading-tight">
             About Sankalp Sarthi Foundation
           </h1>
           
-          <p className="text-base sm:text-lg text-emerald-200/90 leading-relaxed">
-            Founded on the principle that “Helping hands can make difference”, we are a volunteer-driven non-profit organization serving communities in Mumbai and surrounding areas since 2013.
+          <p className="text-base sm:text-lg font-sans text-white/80 leading-relaxed">
+            Founded on the guiding principle that “Helping hands create lasting change”, we are a volunteer-led non-profit organization serving vulnerable communities in Mumbai since 2013.
           </p>
         </div>
       </section>
 
-      {/* Core Mission & Positioning */}
+      {/* Positioning */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          <div className="lg:col-span-6 space-y-6">
-            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
-              Our Organizational Positioning
+          <div className="lg:col-span-7 space-y-6">
+            <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+              Institutional Credibility
             </span>
             
-            <h2 className="font-serif text-3xl font-bold text-gray-900 leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#17352D] leading-tight">
               Small acts of consistent service build resilient communities
             </h2>
             
-            <p className="text-sm text-gray-700 leading-relaxed">
-              Sankalp Sarthi Foundation operates at the intersection of education support, food security, and community health. Powered entirely by dedicated volunteers and generous donors, we focus on high-impact grassroots drives that deliver tangible relief directly to beneficiaries.
+            <p className="text-sm font-sans text-[#66756F] leading-relaxed">
+              Sankalp Sarthi Foundation operates at the intersection of education support, food security, and community health. Powered entirely by dedicated volunteers and donors, we focus on high-impact grassroots drives that deliver tangible relief directly to beneficiaries.
             </p>
 
-            <div className="space-y-3 pt-2">
-              <div className="flex items-start gap-3 bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">Education & School Supplies</h4>
-                  <p className="text-xs text-gray-600">Equipping underprivileged students with quality school bags, exercise books, and stationery essentials.</p>
-                </div>
+            <div className="space-y-4 pt-2 border-t border-[#17352D]/10 text-xs font-sans text-[#17352D]">
+              <div className="py-2 border-b border-[#17352D]/10">
+                <strong className="block font-bold text-[#005B45] text-sm">Education & School Supplies</strong>
+                <span className="text-[#66756F]">Equipping underprivileged students with durable school bags, notebooks, and writing materials.</span>
               </div>
 
-              <div className="flex items-start gap-3 bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">Food Support & Hunger Relief</h4>
-                  <p className="text-xs text-gray-600">Distributing fresh wholesome meals to homeless individuals and families across Mumbai.</p>
-                </div>
+              <div className="py-2 border-b border-[#17352D]/10">
+                <strong className="block font-bold text-[#005B45] text-sm">Food Support & Hunger Relief</strong>
+                <span className="text-[#66756F]">Distributing fresh wholesome warm meals to homeless families across Mumbai.</span>
               </div>
 
-              <div className="flex items-start gap-3 bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">Hospital Patient Nutritional Care</h4>
-                  <p className="text-xs text-gray-600">Providing fresh fruits, milk, and nutritional supplements to economically vulnerable patients in government hospitals.</p>
-                </div>
+              <div className="py-2">
+                <strong className="block font-bold text-[#005B45] text-sm">Hospital Patient Care</strong>
+                <span className="text-[#66756F]">Providing fresh fruits, milk, and nutritional supplements in public municipal hospitals.</span>
               </div>
             </div>
 
           </div>
 
-          <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
-              <div className="aspect-4/3 relative">
-                <Image
-                  src="/assets/foundation-certificate.png"
-                  alt="Official Sankalp Sarthi Foundation Certificate of Appreciation"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-4 bg-emerald-950 text-white text-center text-xs font-medium">
-                Official Certificate of Appreciation sample issued for Social Service Internships
-              </div>
-            </div>
+          <div className="lg:col-span-5 relative aspect-4/5 border border-[#17352D]/15 overflow-hidden bg-[#EAE8DE]">
+            <Image
+              src="/assets/foundation-certificate.png"
+              alt="Official Foundation Certificate Document"
+              fill
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-contain p-2"
+            />
           </div>
 
         </div>
       </section>
 
-      {/* Verified Documentation & Internship Context */}
-      <section className="bg-gray-50 py-16 border-y border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
-              Youth Empowerment & Internships
-            </span>
-            <h2 className="font-serif text-3xl font-bold text-gray-900 mt-1">
-              Social Service Internships & Outreach
-            </h2>
-            <p className="text-sm text-gray-600 mt-2">
-              We provide college students (such as B.Tech academic requirement 45-hour social service programs) hands-on opportunities in field service, digital communication, content planning, and archive curation.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-serif font-bold text-lg text-gray-900">Certificate of Appreciation</h3>
-                  <p className="text-xs text-gray-500">Issued by Foundation Trustees</p>
-                </div>
-              </div>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Recognizing student contributions in technical development, Instagram/Facebook content curation, visual material organization, and digital communication strategy.
-              </p>
-              <div className="pt-2 flex items-center gap-4 text-xs font-semibold text-emerald-800">
-                <span>Signatories:</span>
-                <span>Priyanka Barge (Treasurer)</span>
-                <span>Prem Baraskar (IT Lead)</span>
-              </div>
-            </div>
-
-            <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-lg border border-gray-200 bg-white">
-              <Image
-                src="/assets/foundation-letterhead.png"
-                alt="Foundation Letterhead and Internship Document"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Leadership & Trustees */}
+      {/* Leadership */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
-            Leadership & Coordination
+        <div className="max-w-2xl mb-12 space-y-2">
+          <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+            Foundation Governance
           </span>
-          <h2 className="font-serif text-3xl font-bold text-gray-900 mt-1">
-            Core Foundation Officers
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#17352D]">
+            Leadership & Coordination
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl">
           {SITE_CONFIG.leadership.map((member) => (
             <div
               key={member.name}
-              className="p-6 rounded-2xl bg-white border border-gray-200 shadow-xs text-center space-y-3"
+              className="p-8 border border-[#17352D]/15 bg-white space-y-3"
             >
-              <div className="w-16 h-16 rounded-full bg-emerald-700 text-white text-xl font-bold font-serif mx-auto flex items-center justify-center shadow-md">
-                {member.name.split(" ").map(n => n[0]).join("")}
-              </div>
-              <div>
-                <h3 className="font-serif font-bold text-lg text-gray-900">{member.name}</h3>
-                <p className="text-xs font-bold text-emerald-700">{member.title}</p>
-                <p className="text-xs text-gray-600 mt-1">{member.role}</p>
-              </div>
+              <h3 className="font-serif font-bold text-2xl text-[#17352D]">{member.name}</h3>
+              <p className="text-xs font-sans font-bold text-[#005B45] uppercase tracking-wider">{member.title}</p>
+              <p className="text-xs font-sans text-[#66756F]">{member.role}</p>
             </div>
           ))}
         </div>
