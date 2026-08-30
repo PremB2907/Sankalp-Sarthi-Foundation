@@ -16,17 +16,27 @@
     --border-subtle: rgba(23, 53, 45, 0.12);
   }
 
-  body {
-    background-color: var(--warm-white);
-    color: var(--text);
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+  *, ::before, ::after {
+    box-sizing: border-box;
   }
 
   html {
     scroll-behavior: smooth;
     background-color: var(--warm-white);
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--warm-white);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, .font-serif {
@@ -42,9 +52,36 @@
   .font-sans {
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
+
+  /* Prevent iOS Safari input zoom by enforcing 16px minimum font size */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
 }
 
-/* Custom Editorial Color Helpers */
+/* Fluid Typography Utilities */
+.text-fluid-hero {
+  font-size: clamp(36px, 9vw, 64px);
+  line-height: 1.1;
+}
+
+.text-fluid-section {
+  font-size: clamp(28px, 7.5vw, 52px);
+  line-height: 1.15;
+}
+
+.text-fluid-number {
+  font-size: clamp(32px, 8.5vw, 56px);
+  line-height: 1;
+}
+
+/* Custom Editorial Helpers */
 .bg-warm-white {
   background-color: var(--warm-white);
 }
@@ -69,48 +106,13 @@
 .text-royal-blue {
   color: var(--royal-blue);
 }
-.text-custom-text {
-  color: var(--text);
-}
-.text-custom-muted {
-  color: var(--muted);
-}
-.border-subtle {
-  border-color: var(--border-subtle);
+
+/* Safe Area Padding for iOS iPhones */
+.pb-safe {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
 }
 
-/* Editorial Button Hover */
-.btn-editorial-primary {
-  background-color: var(--deep-green);
-  color: var(--white);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  transition: all 0.2s ease-in-out;
-  border-radius: 4px;
-}
-.btn-editorial-primary:hover {
-  background-color: var(--dark-green);
-}
-
-.btn-editorial-outline {
-  background-color: transparent;
-  color: var(--text);
-  border: 1px solid var(--text);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  transition: all 0.2s ease-in-out;
-  border-radius: 4px;
-}
-.btn-editorial-outline:hover {
-  background-color: var(--text);
-  color: var(--warm-white);
-}
-
-/* Custom Scrollbar */
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 6px;
 }

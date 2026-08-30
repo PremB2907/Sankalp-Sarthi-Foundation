@@ -1,37 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, ExternalLink, ArrowUpRight, MessageCircle } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
+import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-[#003D31] text-white pt-20 pb-12 border-t border-white/10 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#003D31] text-white border-t border-white/10 pt-16 pb-24 lg:pb-16 w-full max-w-full">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         
-        {/* Top Callout */}
-        <div className="pb-16 border-b border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-          <div className="space-y-2 max-w-2xl">
-            <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
-              Make A Difference Today
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-white">
-              "Your contribution becomes someone's opportunity."
-            </h2>
-          </div>
-
-          <Link
-            href="/donate"
-            className="px-8 py-4 text-xs font-sans font-bold tracking-widest text-[#003D31] bg-[#63BE21] hover:bg-lime-400 uppercase transition-all rounded-xs shadow-xs shrink-0 text-center"
-          >
-            DONATE NOW →
-          </Link>
-        </div>
-
-        {/* Main Footer Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 py-16 border-b border-white/10">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/10">
           
-          {/* Col 1 & 2: Brand Info */}
-          <div className="lg:col-span-2 space-y-4">
+          {/* Col 1: Identity & Legal */}
+          <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 overflow-hidden shrink-0">
                 <Image
@@ -42,157 +23,117 @@ export function Footer() {
                   className="object-contain"
                 />
               </div>
-              <div>
-                <h3 className="font-serif font-bold text-xl text-white">
-                  {SITE_CONFIG.name}
-                </h3>
-                <p className="text-[10px] font-sans font-medium uppercase tracking-widest text-[#63BE21]">
-                  {SITE_CONFIG.tagline}
-                </p>
+              <div className="flex flex-col">
+                <span className="font-serif font-bold text-lg leading-tight text-white">
+                  Sankalp Sarthi Foundation
+                </span>
+                <span className="text-[10px] font-sans font-medium uppercase tracking-widest text-[#63BE21]">
+                  Regd. No. {SITE_CONFIG.regNo}
+                </span>
               </div>
             </div>
 
-            <p className="text-xs font-sans text-white/70 leading-relaxed max-w-sm">
-              A volunteer-driven non-profit organization based in Mumbai, dedicated to education support, homeless hunger relief, and hospital patient care.
+            <p className="text-xs font-sans text-white/70 leading-relaxed">
+              Govt. Approved non-profit organization in Mumbai dedicated to education support, homeless food distribution, and hospital patient care.
             </p>
 
-            <div className="pt-2 space-y-2 text-xs font-sans text-white/80">
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#63BE21]" />
-                <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-white underline">
-                  {SITE_CONFIG.email}
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#63BE21]" />
-                <span>{SITE_CONFIG.location}</span>
-              </div>
+            <div className="pt-2 text-[11px] font-sans text-white/60 space-y-1">
+              <div>12A Reg. No.: <strong className="text-white">{SITE_CONFIG.reg12A}</strong></div>
+              <div>80G Reg. No.: <strong className="text-white">{SITE_CONFIG.reg80G}</strong></div>
+              <div>PAN No.: <strong className="text-white">{SITE_CONFIG.panNo}</strong></div>
             </div>
           </div>
 
-          {/* Col 3: Navigation */}
-          <div>
-            <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-[#63BE21] mb-4">
+          {/* Col 2: Navigation Links */}
+          <div className="lg:col-span-2 space-y-3">
+            <h3 className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
               Navigation
-            </h4>
-            <ul className="space-y-3 text-xs font-sans text-white/80">
-              <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/causes" className="hover:text-white transition-colors">
-                  Our Key Work
-                </Link>
-              </li>
-              <li>
-                <Link href="/impact" className="hover:text-white transition-colors">
-                  Impact & Reach
-                </Link>
-              </li>
-              <li>
-                <Link href="/campaigns/annual-drive-2026" className="hover:text-white transition-colors">
-                  Annual Drive 2026
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery" className="hover:text-white transition-colors">
-                  Photo Stories
-                </Link>
-              </li>
+            </h3>
+            <ul className="space-y-2 text-xs font-sans text-white/80">
+              <li><Link href="/" className="hover:text-white transition-colors block py-1">Home</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors block py-1">About Us</Link></li>
+              <li><Link href="/causes" className="hover:text-white transition-colors block py-1">Our Programs</Link></li>
+              <li><Link href="/impact" className="hover:text-white transition-colors block py-1">Verified Impact</Link></li>
+              <li><Link href="/gallery" className="hover:text-white transition-colors block py-1">Field Gallery</Link></li>
+              <li><Link href="/faq" className="hover:text-white transition-colors block py-1">FAQ & 80G Info</Link></li>
             </ul>
           </div>
 
-          {/* Col 4: Involvement */}
-          <div>
-            <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-[#63BE21] mb-4">
+          {/* Col 3: Get Involved */}
+          <div className="lg:col-span-3 space-y-3">
+            <h3 className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
               Get Involved
-            </h4>
-            <ul className="space-y-3 text-xs font-sans text-white/80">
-              <li>
-                <Link href="/donate" className="hover:text-white transition-colors font-bold text-[#63BE21]">
-                  Donate Funds →
-                </Link>
-              </li>
-              <li>
-                <Link href="/volunteer" className="hover:text-white transition-colors">
-                  Become a Volunteer
-                </Link>
-              </li>
-              <li>
-                <Link href="/contribute" className="hover:text-white transition-colors">
-                  Contribute Supplies / Tech
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact Coordinator
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="hover:text-white transition-colors">
-                  FAQ & Governance
-                </Link>
-              </li>
+            </h3>
+            <ul className="space-y-2 text-xs font-sans text-white/80">
+              <li><Link href="/donate" className="hover:text-white transition-colors block py-1 font-bold text-white">Make a Donation →</Link></li>
+              <li><Link href="/volunteer" className="hover:text-white transition-colors block py-1">Volunteer Network</Link></li>
+              <li><Link href="/contribute" className="hover:text-white transition-colors block py-1">In-Kind Contributions</Link></li>
+              <li><Link href="/campaigns/annual-drive-2026" className="hover:text-white transition-colors block py-1">Annual Drive 2026</Link></li>
+              <li><Link href="/admin" className="hover:text-white transition-colors block py-1 text-white/50">Admin Portal</Link></li>
             </ul>
-          </div>
 
-          {/* Col 5: Social & WhatsApp */}
-          <div>
-            <h4 className="font-sans font-bold text-xs uppercase tracking-widest text-[#63BE21] mb-4">
-              Communities & Social
-            </h4>
-            <div className="space-y-2 text-xs font-sans text-white/80">
+            {/* WhatsApp Communities */}
+            <div className="pt-2 space-y-1.5">
+              <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-[#63BE21] block">
+                Official WhatsApp Groups
+              </span>
               <a
                 href={SITE_CONFIG.socialLinks.whatsappVolunteer}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 p-2 bg-emerald-950/80 hover:bg-emerald-950 border border-white/10 text-white rounded-xs transition-colors"
+                className="flex items-center gap-1.5 text-xs text-white/90 hover:text-white font-medium py-1"
               >
                 <MessageCircle className="w-3.5 h-3.5 text-[#63BE21]" />
-                <span>Volunteer Group</span>
+                <span>Join Volunteer Group ↗</span>
               </a>
-
               <a
-                href={SITE_CONFIG.socialLinks.whatsappWebsiteContrib}
+                href={SITE_CONFIG.socialLinks.whatsappDonation}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 p-2 bg-emerald-950/80 hover:bg-emerald-950 border border-white/10 text-white rounded-xs transition-colors"
+                className="flex items-center gap-1.5 text-xs text-white/90 hover:text-white font-medium py-1"
               >
                 <MessageCircle className="w-3.5 h-3.5 text-[#63BE21]" />
-                <span>Supply & Tech Group</span>
+                <span>Join Donors Channel ↗</span>
               </a>
+            </div>
+          </div>
 
-              <div className="pt-3 flex flex-wrap gap-3 text-xs text-white/70">
-                <a href={SITE_CONFIG.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white underline">
-                  LinkedIn
-                </a>
-                <a href={SITE_CONFIG.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-white underline">
-                  Instagram
-                </a>
-                <a href={SITE_CONFIG.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-white underline">
-                  Facebook
-                </a>
-              </div>
+          {/* Col 4: Registered Office Contact */}
+          <div className="lg:col-span-3 space-y-3 text-xs font-sans text-white/80">
+            <h3 className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
+              Registered Office
+            </h3>
+            
+            <div className="flex items-start gap-2.5">
+              <MapPin className="w-4 h-4 text-[#63BE21] shrink-0 mt-0.5" />
+              <span>{SITE_CONFIG.address}</span>
+            </div>
+
+            <div className="flex items-center gap-2.5 pt-1">
+              <Mail className="w-4 h-4 text-[#63BE21] shrink-0" />
+              <a href={`mailto:${SITE_CONFIG.email}`} className="hover:underline text-white font-medium">
+                {SITE_CONFIG.email}
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2.5 pt-1">
+              <Phone className="w-4 h-4 text-[#63BE21] shrink-0" />
+              <span>+91 7977854590 / 7738351352</span>
             </div>
           </div>
 
         </div>
 
-        {/* Legal & Copyright */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-sans text-white/60">
-          <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. {SITE_CONFIG.govApproved} ({SITE_CONFIG.regNo}).</p>
+        {/* Bottom Legal Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-sans text-white/60">
+          <div>
+            © {new Date().getFullYear()} {SITE_CONFIG.name}. All Rights Reserved.
+          </div>
+
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/admin" className="hover:text-white transition-colors">
-              Coordinator Portal
-            </Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link>
           </div>
         </div>
 

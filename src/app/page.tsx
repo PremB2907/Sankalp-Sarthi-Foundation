@@ -10,7 +10,7 @@ import { SITE_CONFIG } from "@/config/site";
 
 export default function HomePage() {
   return (
-    <div className="space-y-0 bg-[#F7F6F0]">
+    <div className="space-y-0 bg-[#F7F6F0] w-full max-w-full overflow-x-hidden">
       
       {/* 1. Hero */}
       <Hero />
@@ -25,29 +25,29 @@ export default function HomePage() {
       <CampaignCard />
 
       {/* 5. Editorial Photo Stories & Press Section */}
-      <section className="py-24 bg-[#F7F6F0] border-b border-[#17352D]/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-14 sm:py-24 bg-[#F7F6F0] border-b border-[#17352D]/10 w-full max-w-full">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-4 sm:gap-6">
             <div className="space-y-2">
-              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45]">
+              <span className="text-[11px] sm:text-xs font-sans font-bold uppercase tracking-widest text-[#005B45] block">
                 Field Documentation & Press Media
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl text-[#17352D]">
+              <h2 className="font-serif text-[#17352D] text-fluid-[#005B45]">
                 Real drives, real smiles, verified community impact
               </h2>
             </div>
 
             <Link
               href="/gallery"
-              className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45] hover:text-[#003D31] flex items-center gap-1.5 transition-colors"
+              className="text-xs font-sans font-bold uppercase tracking-widest text-[#005B45] hover:text-[#003D31] flex items-center gap-1.5 transition-colors self-start md:self-auto"
             >
-              View All 10 Field Photos & News Clippings
+              View All 20 Field Photos & Press Features
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             
             <div className="space-y-3 group border border-[#17352D]/15 bg-white p-4">
               <div className="relative aspect-4/3 overflow-hidden bg-[#EAE8DE]">
@@ -55,7 +55,7 @@ export default function HomePage() {
                   src="/assets/drives/drive_1.jpg"
                   alt="School Supplies Distribution Drive"
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -76,7 +76,7 @@ export default function HomePage() {
                   src="/assets/drives/drive_7.jpg"
                   alt="Classroom Refreshment Drive"
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -97,7 +97,7 @@ export default function HomePage() {
                   src="/assets/drives/drive_8.jpg"
                   alt="Volunteer Notebook Packing Operations"
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -118,7 +118,7 @@ export default function HomePage() {
                   src="/assets/drives/newspaper_clipping.png"
                   alt="Jagaruk Times Newspaper Coverage"
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -140,12 +140,12 @@ export default function HomePage() {
       </section>
 
       {/* 6. Volunteer Callout Section */}
-      <section className="py-24 bg-[#005B45] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="py-14 sm:py-24 bg-[#005B45] text-white w-full max-w-full">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             <div className="lg:col-span-8 space-y-4">
-              <span className="text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21]">
+              <span className="text-[11px] sm:text-xs font-sans font-bold uppercase tracking-widest text-[#63BE21] block">
                 Join Our Volunteer Network
               </span>
               <h2 className="font-serif text-3xl sm:text-5xl text-white leading-tight">
@@ -156,10 +156,10 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col gap-4">
+            <div className="lg:col-span-4 flex flex-col gap-3.5 sm:gap-4">
               <Link
                 href="/volunteer"
-                className="px-8 py-4 text-xs font-sans font-bold tracking-widest text-[#003D31] bg-[#63BE21] hover:bg-lime-400 uppercase transition-all text-center rounded-xs"
+                className="w-full min-h-[48px] py-4 text-xs font-sans font-bold tracking-widest text-[#003D31] bg-[#63BE21] hover:bg-lime-400 uppercase transition-all text-center rounded-xs shadow-md flex items-center justify-center"
               >
                 BECOME A VOLUNTEER →
               </Link>
@@ -168,7 +168,7 @@ export default function HomePage() {
                 href={SITE_CONFIG.socialLinks.whatsappVolunteer}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3.5 text-xs font-sans font-semibold tracking-wider text-white border border-white/30 hover:border-white uppercase transition-all text-center rounded-xs flex items-center justify-center gap-2"
+                className="w-full min-h-[48px] py-3.5 text-xs font-sans font-semibold tracking-wider text-white border border-white/30 hover:border-white uppercase transition-all text-center rounded-xs flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 text-[#63BE21]" />
                 JOIN WHATSAPP VOLUNTEER GROUP
