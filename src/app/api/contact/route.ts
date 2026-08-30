@@ -22,14 +22,18 @@ export async function POST(req: Request) {
       "UNREAD",
     ];
 
-    appendToSheet("CONTACTS", rowValues).catch((err) =>
-      console.error("Async Google Sheets contact append failed:", err)
-    );
+    try {
+      await appendToSheet("CONTACTS", rowValues);
+    } catch (err) {
+      console.error("Google Sheets contact append failed:", err);
+    }
 
     // 2. Send email via SMTP (From: sankalpsarthifoundation@gmail.com, To: User & Foundation)
-    sendContactEmails(validated).catch((err) =>
-      console.error("Async SMTP contact email failed:", err)
-    );
+    try {
+      await sendContactEmails(validated);
+    } catch (err) {
+      console.error("SMTP contact email failed:", err);
+    }
 
     return NextResponse.json({
       success: true,

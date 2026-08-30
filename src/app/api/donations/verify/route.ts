@@ -49,23 +49,29 @@ export async function POST(req: Request) {
       "Website Direct",
     ];
 
-    // 1. Append to DONATIONS Google Sheet
-    appendToSheet("DONATIONS", rowValues).catch((err) =>
-      console.error("Async Google Sheets donation append failed:", err)
-    );
+    // 1. Await Google Sheets append (essential for serverless execution)
+    try {
+      await appendToSheet("DONATIONS", rowValues);
+    } catch (err) {
+      console.error("Google Sheets donation append failed:", err);
+    }
 
-    // 2. Send PDF Donation Receipt email via SMTP to Donor & Foundation copy
-    sendDonationReceiptEmail({
-      receiptId: donationId,
-      donorName: validated.anonymous ? "Valued Donor" : validated.donorName,
-      donorEmail: validated.donorEmail,
-      donorPhone: validated.donorPhone,
-      amount: validated.amount,
-      cause: validated.cause,
-      paymentMethod: "Razorpay",
-      transactionRef: validated.razorpay_payment_id || validated.razorpay_order_id,
-      createdAt,
-    }).catch((err) => console.error("Async donation receipt email failed:", err));
+    // 2. Await Email Delivery via Gmail SMTP (essential for serverless execution)
+    try {
+      await sendDonationReceiptEmail({
+        receiptId: donationId,
+        donorName: validated.anonymous ? "Valued Donor" : validated.donorName,
+        donorEmail: validated.donorEmail,
+        donorPhone: validated.donorPhone,
+        amount: validated.amount,
+        cause: validated.cause,
+        paymentMethod: "Razorpay",
+        transactionRef: validated.razorpay_payment_id || validated.razorpay_order_id,
+        createdAt,
+      });
+    } catch (err) {
+      console.error("Donation receipt email failed:", err);
+    }
 
     return NextResponse.json({
       success: true,
